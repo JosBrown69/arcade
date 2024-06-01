@@ -1,0 +1,70 @@
+POST http://127.0.0.1:8000/arcade/user/register/
+Content-Type: application/json
+
+{"username":"Pepe", "password":"12345"}
+
+###
+
+POST http://127.0.0.1:8000/arcade/token/
+Content-Type: application/json
+
+{"username":"Pepe", "password": "12345"}
+
+### 
+
+POST http://127.0.0.1:8000/arcade/token/refresh/
+Content-Type: application/json
+
+{"refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTcxNTg4NjkyMSwiaWF0IjoxNzE1ODAwNTIxLCJqdGkiOiJiY2Y2OTc2MDNmMmI0NDA1OWU5Yzg1YjI0MmFiNGE2ZSIsInVzZXJfaWQiOjJ9.IFkjNpF_I91jzVJ0YzivvIvY93E5EHohEtG04RSQDAA"}
+
+### 
+
+GET http://127.0.0.1:8000/arcade/game/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc1MDEyLCJpYXQiOjE3MTY1NzQ3MTIsImp0aSI6IjhlZDM4NmNmMTgyYTRmY2I4NjA4ZmVmYmMxNjdmMGVkIiwidXNlcl9pZCI6Mn0.G9Rdy8t3nikoNy1OayFukEyamTEGQBkbd3SumZdZO7Q
+
+###
+
+GET http://127.0.0.1:8000/arcade/user/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc1MDEyLCJpYXQiOjE3MTY1NzQ3MTIsImp0aSI6IjhlZDM4NmNmMTgyYTRmY2I4NjA4ZmVmYmMxNjdmMGVkIiwidXNlcl9pZCI6Mn0.G9Rdy8t3nikoNy1OayFukEyamTEGQBkbd3SumZdZO7Q
+
+###
+
+GET http://127.0.0.1:8000/arcade/trophies
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc1MDEyLCJpYXQiOjE3MTY1NzQ3MTIsImp0aSI6IjhlZDM4NmNmMTgyYTRmY2I4NjA4ZmVmYmMxNjdmMGVkIiwidXNlcl9pZCI6Mn0.G9Rdy8t3nikoNy1OayFukEyamTEGQBkbd3SumZdZO7Q
+
+###
+
+POST http://127.0.0.1:8000/arcade/trophie/create
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc1MDEyLCJpYXQiOjE3MTY1NzQ3MTIsImp0aSI6IjhlZDM4NmNmMTgyYTRmY2I4NjA4ZmVmYmMxNjdmMGVkIiwidXNlcl9pZCI6Mn0.G9Rdy8t3nikoNy1OayFukEyamTEGQBkbd3SumZdZO7Q
+
+{"trophie":"Ganador", "description":"ganaste!", "juego":"1", "metal":"Bronze"}
+
+###
+
+GET http://127.0.0.1:8000/arcade/trophie/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc3MjgwLCJpYXQiOjE3MTY1NzY5ODAsImp0aSI6Ijk3OWQ4NzgyMjRhZDQwY2ViYTNiOGI5N2NmM2U4MTgyIiwidXNlcl9pZCI6Mn0.okNSIbhc-kbzm8x3IOC7fKVA-NrhdtrehtNHw2Sc1Aw
+
+###
+
+GET http://127.0.0.1:8000/arcade/clanes/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc3MjgwLCJpYXQiOjE3MTY1NzY5ODAsImp0aSI6Ijk3OWQ4NzgyMjRhZDQwY2ViYTNiOGI5N2NmM2U4MTgyIiwidXNlcl9pZCI6Mn0.okNSIbhc-kbzm8x3IOC7fKVA-NrhdtrehtNHw2Sc1Aw
+
+###
+
+POST  http://127.0.0.1:8000/arcade/clan/create/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NDM2NzY5LCJpYXQiOjE3MTY0MzY0NjksImp0aSI6ImVjZDAzMzg4YmU0MzRmZjBiNzU5OTc1YTY0ODEyOTgwIiwidXNlcl9pZCI6Mn0.ktO_D4FkvpibV3uwLrFnChuXzYTyydIKDG7Q21Ua35I
+
+{"title":"Clan 4"}
+
+###
+
+GET http://127.0.0.1:8000/arcade/clan/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NDM2NzY5LCJpYXQiOjE3MTY0MzY0NjksImp0aSI6ImVjZDAzMzg4YmU0MzRmZjBiNzU5OTc1YTY0ODEyOTgwIiwidXNlcl9pZCI6Mn0.ktO_D4FkvpibV3uwLrFnChuXzYTyydIKDG7Q21Ua35I
