@@ -19,11 +19,12 @@ export function UserForm({ route }) {
         if (route === 'login') {
             try {
                 const res = await login(data);
+                console.log(res);
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                console.log(res);
-                navigate('/');
-                location.reload()
+                //console.log(res);
+                //navigate('/');
+                //location.reload()
             } catch (errors) {
                 console.log(errors);
             }

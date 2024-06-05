@@ -1,14 +1,14 @@
 POST http://127.0.0.1:8000/arcade/user/register/
 Content-Type: application/json
 
-{"username":"Pepe", "password":"12345"}
+{"username":"Pepe4", "password":"12345"}
 
 ###
 
 POST http://127.0.0.1:8000/arcade/token/
 Content-Type: application/json
 
-{"username":"Pepe", "password": "12345"}
+{"username":"Pepe4", "password": "12345"}
 
 ### 
 
@@ -21,13 +21,13 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/arcade/game/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc1MDEyLCJpYXQiOjE3MTY1NzQ3MTIsImp0aSI6IjhlZDM4NmNmMTgyYTRmY2I4NjA4ZmVmYmMxNjdmMGVkIiwidXNlcl9pZCI6Mn0.G9Rdy8t3nikoNy1OayFukEyamTEGQBkbd3SumZdZO7Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NjEyNjY3LCJpYXQiOjE3MTc2MTIzNjcsImp0aSI6IjBiNjAzMGFlZDJjOTQ0ODE4NWYzZTdkNTU4NmRhZjUzIiwidXNlcl9pZCI6NX0.QiBppb8zH_XOLi6fkjPt0gABHhi6v2_XbxlVIeq5pDg
 
 ###
 
 GET http://127.0.0.1:8000/arcade/user/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NTc1MDEyLCJpYXQiOjE3MTY1NzQ3MTIsImp0aSI6IjhlZDM4NmNmMTgyYTRmY2I4NjA4ZmVmYmMxNjdmMGVkIiwidXNlcl9pZCI6Mn0.G9Rdy8t3nikoNy1OayFukEyamTEGQBkbd3SumZdZO7Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3NjEzODA4LCJpYXQiOjE3MTc2MTM1MDgsImp0aSI6IjkxZDdlODMxOWE2ZTRkZDk4ZDBmOTIxMzEyMjA0YjU4IiwidXNlcl9pZCI6NX0.lcMOYyS48E3DyR9ILjrHKRzHDtibBAqtZg-A3GvqXz4
 
 ###
 
@@ -68,3 +68,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 GET http://127.0.0.1:8000/arcade/clan/5
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2NDM2NzY5LCJpYXQiOjE3MTY0MzY0NjksImp0aSI6ImVjZDAzMzg4YmU0MzRmZjBiNzU5OTc1YTY0ODEyOTgwIiwidXNlcl9pZCI6Mn0.ktO_D4FkvpibV3uwLrFnChuXzYTyydIKDG7Q21Ua35I
+
+### 

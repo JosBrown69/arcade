@@ -6,7 +6,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 urlpatterns = [
     path('docs/', include_docs_urls(title='arcade API', authentication_classes=[], permission_classes=[])),
     path('user/register/', views.CreateUserView.as_view(), name='register'),
-    path('user/profile/<int:user_id>', views.ProfileView.as_view(), name='profile'),
     path('user/<int:user_id>/', views.GetUserView.as_view(), name='user'),
     path('user/<int:user_id>/follow/', views.FollowerView.as_view(), name='user'),
     path('users/', views.GetUserListView.as_view(), name='users'),

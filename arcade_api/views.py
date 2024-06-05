@@ -19,11 +19,6 @@ class GetUserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-class ProfileView(generics.RetrieveAPIView):
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated]
-    lookup_url_kwarg = 'user_id'
-
     def get_queryset(self):
         user = self.request.user.id
         return User.objects.get(id=user)
