@@ -7,7 +7,7 @@ export function Navigation() {
     
     return (
         <>
-            <NavLink to='/home' ClassName="active">
+            <NavLink to='/home' className="active">
                 <span><svg
                     xmlns='http://www.w3.org/2000/svg'
                     width='30'
@@ -21,7 +21,7 @@ export function Navigation() {
                 </svg>Home</span>
             </NavLink>
             {isAuthorized && (
-                <NavLink to='/profile' ClassName="active">
+                <NavLink to='/profile' className="active">
                     <span><svg
                         className='w-6 h-6 text-gray-800 dark:text-white'
                         aria-hidden='true'
@@ -40,7 +40,7 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized && (
-                <NavLink to='/trophies' ClassName="active">
+                <NavLink to='/trophies' className="active">
                     <span><svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'
@@ -54,7 +54,7 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized && (
-                <NavLink to='/following' ClassName="active">
+                <NavLink to='/following' className="active">
                     <span><svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'
@@ -68,7 +68,7 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized && (
-                <NavLink to='/clan' ClassName="active">
+                <NavLink to='/clan' className="active">
                     <span><svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'
@@ -82,7 +82,7 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized && (
-                <NavLink to='/chat' ClassName="active">
+                <NavLink to='/chat' className="active">
                     <span><svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'
@@ -96,7 +96,7 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized && (
-                <NavLink to='logout' ClassName="active">
+                <NavLink to='logout' className="active">
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'
@@ -117,12 +117,12 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized === false && (
-                <NavLink to='/login' ClassName="active">
+                <NavLink to='/login' className="active">
                     <span>Login</span>
                 </NavLink>
             )}
             {isAuthorized === false && (
-                <NavLink to='/register' ClassName="active">
+                <NavLink to='/register' className="active">
                     <span>Register</span>
                 </NavLink>
             )}

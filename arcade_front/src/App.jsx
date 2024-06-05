@@ -10,7 +10,8 @@ import { Navigation } from './components/Navigation';
 import { Clan } from './pages/Clan';
 import { Game } from './pages/Game';
 import { Home } from './pages/Home';
-//import { Logout } from './components/Logout';
+import { Following } from './pages/Following';
+
 
 function Logout() {
     localStorage.clear();
@@ -44,6 +45,14 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <Clan />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path='/following'
+                        element={
+                            <ProtectedRoute>
+                                <Following />
                             </ProtectedRoute>
                         }
                     />

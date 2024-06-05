@@ -23,6 +23,7 @@ export function UserForm({ route }) {
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 console.log(res);
                 navigate('/');
+                location.reload()
             } catch (errors) {
                 console.log(errors);
             }
@@ -76,6 +77,7 @@ export function UserForm({ route }) {
                             {...register('gender', { required: true })}
                         />
                         <label htmlFor='philipino'>Philipino</label>
+                        {errors.gender && <span>Gender is required</span>}
                     </div>
                 )}
                 <input
