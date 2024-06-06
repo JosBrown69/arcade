@@ -55,7 +55,7 @@ export function AuthContextProvider(props) {
         const decoded = jwtDecode(jwt)
         try {
             const res = await getUser(decoded.user_id)
-            console.log('this is getUser res:', res);
+            //console.log('this is getUser res:', res);
             setUser(res.data)
         } catch(error) {
             console.error(error)

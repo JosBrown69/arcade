@@ -41,7 +41,7 @@ function App() {
                         }
                     />
                     <Route
-                        path='/clan'
+                        path='/clan/:id'
                         element={
                             <ProtectedRoute>
                                 <Clan />

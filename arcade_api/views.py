@@ -36,7 +36,6 @@ class FollowerListView(generics.ListAPIView):
         user = self.request.user
         return Follower.objects.filter(seguidor=user) 
     
-
 class GetGameView(generics.RetrieveAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
