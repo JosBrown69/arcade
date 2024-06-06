@@ -23,8 +23,8 @@ export function UserForm({ route }) {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 //console.log(res);
-                //navigate('/');
-                //location.reload()
+                navigate('/');
+                location.reload()
             } catch (errors) {
                 console.log(errors);
             }

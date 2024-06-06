@@ -11,6 +11,9 @@ class User(AbstractUser):
 class Follower(models.Model):
     seguidor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seguidor')
     siguiendo = models.ForeignKey(User, on_delete=models.CASCADE, related_name='siguiendo')
+
+    def __strt__(self):
+        return f'{self.seguidor}:{self.siguiendo}'
     
 class Game(models.Model):
     game = models.CharField(max_length=10)

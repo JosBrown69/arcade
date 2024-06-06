@@ -1,15 +1,18 @@
 import { createContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { api } from '../api/api';
+import { api, getUser } from '../api/api';
 import { REFRESH_TOKEN, ACCESS_TOKEN } from '../constants';
 
 export const AuthContext = createContext();
 
 export function AuthContextProvider(props) {
     const [isAuthorized, setIsAuthorized] = useState(null);
+    const [user, setUser] = useState('')
 
     useEffect(() => {
-        auth().catch(() => setIsAuthorized(false)); //eslint-disable-next-line react-hooks/exhaustive-deps
+        auth().catch(() => setIsAuthorized(false));
+        obtenerUser()
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const refreshToken = async () => {
@@ -47,10 +50,23 @@ export function AuthContextProvider(props) {
         }
     }; 
 
+    async function obtenerUser() {
+        const jwt = localStorage.getItem(ACCESS_TOKEN);
+        const decoded = jwtDecode(jwt)
+        try {
+            const res = await getUser(decoded.user_id)
+            console.log('this is getUser res:', res);
+            setUser(res.data)
+        } catch(error) {
+            console.error(error)
+        }
+    } 
+
     return (
         <AuthContext.Provider
             value={{
                 isAuthorized,
+                user,
             }}
         >
             {props.children}
