@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { UserClanes } from '../components/UserClanes';
+import { UserTrophies } from '../components/UserTrophies';
 
 export function Profile() {
     const { user } = useContext(AuthContext);
@@ -25,6 +26,7 @@ export function Profile() {
             </h1>
 
             <UserClanes user={user} />
+            <UserTrophies user={user}/>
         </>
     );
 }

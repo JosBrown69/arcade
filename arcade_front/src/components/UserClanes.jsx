@@ -1,35 +1,19 @@
-import { useEffect, useState } from 'react';
-import { getClanes } from '../api/api';
+import { useContext } from 'react';
+import { ClanContext } from '../context/ClanContext';
 import { ClanesList } from './ClanesList';
 
 export function UserClanes({ user }) {
-
-    const [clanes, setClanes] = useState([])
-
-    //console.log('usuario:', user.username);
-
-    useEffect(() => {
-        async function getClans() {
-            try {
-                const res = await getClanes();
-                //console.log('clanes :', res.data);
-                setClanes(res.data)
-            } catch (errors) {
-                console.error(errors);
-            }
-        }
-        getClans();
-    }, []);
+    const { clanes } = useContext(ClanContext);
 
     return (
         <div>
             {clanes.length > 0 ? (
-            clanes.map((clan) => (
-                <ClanesList key={clan.id} user={user} clan={clan} />
-            ))
-        ) : (
-            <div>Loading clanes...</div>
-        )}
+                clanes.map((clan) => (
+                    <ClanesList key={clan.id} user={user} clan={clan} />
+                ))
+            ) : (
+                <div>Loading clanes...</div>
+            )}
         </div>
     );
 }
