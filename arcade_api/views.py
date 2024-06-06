@@ -30,9 +30,12 @@ class FollowerView(generics.CreateAPIView):
     lookup_url_kwarg = 'user_id'
 
 class FollowerListView(generics.ListAPIView):
+    serializer_class = FollowerSerializer
+    permission_classes = [IsAuthenticated]
     def get_queryset(self):
         user = self.request.user
-        queryset = Follower.objects.filter()
+        return Follower.objects.filter(seguidor=user) 
+    
 
 class GetGameView(generics.RetrieveAPIView):
     queryset = Game.objects.all()
