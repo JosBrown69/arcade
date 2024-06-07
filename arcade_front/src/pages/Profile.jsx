@@ -25,8 +25,14 @@ export function Profile() {
                 {user.username}
             </h1>
 
-            <UserClanes user={user} />
+            <div>
+                <h2>Clanes</h2>
+                <UserClanes user={user} />
+            </div>
+            <div>
+                <h2>Trophies</h2>
             <UserTrophies user={user}/>
+            </div>
         </>
     );
 }

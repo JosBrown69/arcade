@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import { ClanContextProvider } from './context/ClanContext';
+import { TrophieContextProvider } from './context/TrophieContext';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Profile } from './pages/Profile';
@@ -23,49 +24,50 @@ function App() {
         <BrowserRouter>
             <AuthContextProvider>
                 <ClanContextProvider>
-                    <Navigation />
-
-                    <Routes>
-                        <Route path='/' element={<Navigate to='/home' />} />
-                        <Route path='/home' element={<Home />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/logout' element={<Logout />} />
-                        <Route path='/game' element={<Game />} />
-                        <Route path='/register' element={<Register />} />
-                        <Route path='*' element={<NotFound />} />
-                        <Route
-                            path='/profile'
-                            element={
-                                <ProtectedRoute>
-                                    <Profile />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path='/clan/:id'
-                            element={
-                                <ProtectedRoute>
-                                    <Clan />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path='/following'
-                            element={
-                                <ProtectedRoute>
-                                    <Following />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path='/trophies'
-                            element={
-                                <ProtectedRoute>
-                                    <Trophies />
-                                </ProtectedRoute>
-                            }
-                        />
-                    </Routes>
+                    <TrophieContextProvider>
+                        <Navigation />
+                        <Routes>
+                            <Route path='/' element={<Navigate to='/home' />} />
+                            <Route path='/home' element={<Home />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/logout' element={<Logout />} />
+                            <Route path='/game' element={<Game />} />
+                            <Route path='/register' element={<Register />} />
+                            <Route path='*' element={<NotFound />} />
+                            <Route
+                                path='/profile'
+                                element={
+                                    <ProtectedRoute>
+                                        <Profile />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/clan/:id'
+                                element={
+                                    <ProtectedRoute>
+                                        <Clan />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/following'
+                                element={
+                                    <ProtectedRoute>
+                                        <Following />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/trophies'
+                                element={
+                                    <ProtectedRoute>
+                                        <Trophies />
+                                    </ProtectedRoute>
+                                }
+                            />
+                        </Routes>
+                    </TrophieContextProvider>
                 </ClanContextProvider>
             </AuthContextProvider>
         </BrowserRouter>
