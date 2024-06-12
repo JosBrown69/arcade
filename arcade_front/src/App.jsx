@@ -13,6 +13,7 @@ import { Clanes } from './pages/Clanes';
 import { Game } from './pages/Game';
 import { Home } from './pages/Home';
 import { Following } from './pages/Following';
+import { Clan } from './pages/Clan';
 
 function Logout() {
     localStorage.clear();
@@ -47,6 +48,14 @@ function App() {
                                 element={
                                     <ProtectedRoute>
                                         <Clanes />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/clan/:id/'
+                                element={
+                                    <ProtectedRoute>
+                                        <Clan />
                                     </ProtectedRoute>
                                 }
                             />

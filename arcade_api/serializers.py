@@ -61,6 +61,7 @@ class ClanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Clan
+        depth = 1
         fields = '__all__'
         extra_kwargs = {'creator': {'read_only': True}}
 

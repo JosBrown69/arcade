@@ -21,6 +21,7 @@ api.interceptors.request.use(
 export const registrar = (data) => api.post(`/user/register/`, data)
 export const login = (data) => api.post('/token/', data)
 export const getUser = (id) => api.get(`/user/${id}`)
+export const getClan = (id) => api.get(`/clan/${id}`)
 export const getClanes = () => api.get('/clanes/')
 export const getTrophies = () => api.get('/trophies/')
 export const getGames = (id) => api.get(`${id}`)

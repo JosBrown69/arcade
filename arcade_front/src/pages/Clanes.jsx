@@ -24,7 +24,7 @@ export function Clanes() {
                     </div>
                 ))
             ) : (
-                <div>Loading Trophies...</div>
+                <div>Loading Clanes...</div>
             )}
         </div>
     );
