@@ -9,7 +9,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Trophies } from './pages/Trophies';
 import { NotFound } from './pages/NotFound';
 import { Navigation } from './components/Navigation';
-import { Clan } from './pages/Clan';
+import { Clanes } from './pages/Clanes';
 import { Game } from './pages/Game';
 import { Home } from './pages/Home';
 import { Following } from './pages/Following';
@@ -43,10 +43,10 @@ function App() {
                                 }
                             />
                             <Route
-                                path='/clan/:id'
+                                path='/clanes/'
                                 element={
                                     <ProtectedRoute>
-                                        <Clan />
+                                        <Clanes />
                                     </ProtectedRoute>
                                 }
                             />

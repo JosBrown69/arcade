@@ -68,7 +68,7 @@ export function Navigation() {
                 </NavLink>
             )}
             {isAuthorized && (
-                <NavLink to='/clan' className="active">
+                <NavLink to='/clanes' className="active">
                     <span><svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'

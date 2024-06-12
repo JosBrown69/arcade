@@ -3,27 +3,22 @@ import { useNavigate } from 'react-router-dom';
 export function TrophiesList({ user, trophie }) {
     const navigate = useNavigate();
 
-    console.log(trophie);
+    const ganadores = trophie.achiever;
 
-    const ganadores = trophie.achiever
-
-    for (const ganador of ganadores){
-        const winner = ganador.id
-
-        //console.log(winner);
-
-        if (user.id === winner) {
-            return (
+    return (
+        <div>
+            {ganadores.map((ganador) => (
                 <div
-                    onClick={() => {
-                        navigate(`/trophie/${trophie.id}`);
-                    }}
+                    key={ganador.id}
+                    onClick={() => navigate(`/trophie/${trophie.id}`)}
                 >
-                    {trophie.juego.game}: {trophie.description}
+                    {ganador.id === user.id ? (
+                        <>
+                            {trophie.juego.game}: {trophie.description}
+                        </>
+                    ) : null}
                 </div>
-            );
-        }
-    }
+            ))}
+        </div>
+    );
 }
-
-

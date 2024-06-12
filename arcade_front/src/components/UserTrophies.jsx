@@ -5,8 +5,6 @@ import { TrophiesList } from '../components/TrophiesList';
 export function UserTrophies({ user }) {
     const { trophies } = useContext(TrophieContext);
 
-    //console.log(trophies);
-
     return (
         <div>
             {trophies.length > 0 ? (
@@ -19,7 +17,7 @@ export function UserTrophies({ user }) {
                 ))
             ) : (
                 <div>Loading Trophies...</div>
-            )}
+            )} 
         </div>
     );
 }
