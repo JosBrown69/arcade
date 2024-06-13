@@ -45,6 +45,7 @@ class Clan(models.Model):
     title = models.CharField(max_length=20)
     creator = models.ForeignKey('User', on_delete=models.CASCADE, related_name='creator')
     member = models.ManyToManyField('User', through="Membership", related_name='clans')
+    posts = models.ManyToManyField('User', through='Post', related_name='posts' )
 
     def __str__(self):
         return f'{self.title}'
@@ -56,3 +57,10 @@ class Membership(models.Model):
     def __str__(self):
         return f'{self.clan}: {self.miembro}'
 
+class Post(models.Model):
+    clan = models.ForeignKey(Clan, on_delete=models.CASCADE, null=True)
+    person = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    content = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'{self.clan}: {self.person}'
