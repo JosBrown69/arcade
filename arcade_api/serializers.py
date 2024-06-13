@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Game, Trophie, Clan, Membership, Trophier, Follower
+from .models import User, Game, Trophie, Clan, Membership, Trophier, Follower, Post
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -79,3 +79,22 @@ class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
         fields = '__all__'
+
+class PostSerializer(serializers.ModelSerializer):
+    clan = ClanSerializer(read_only=True)
+    person = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+    def create(self, validated_data):
+        view = self.context['view']
+        clan = view.kwargs.get('clan_id')
+        user = self.context.get('request').user
+        content = self.context['request'].data.get('content')
+        validated_data['clan_id'] = clan
+        validated_data['person'] = user
+        validated_data['content'] = content
+        return Post.objects.create(**validated_data)
+        

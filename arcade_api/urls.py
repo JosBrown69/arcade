@@ -20,6 +20,7 @@ urlpatterns = [
     path('clan/create/', views.CreateClanView.as_view(), name='clan_create'),
     path('clanes/', views.GetClanListView.as_view(), name='clanes'),
     path('clan/<int:clan_id>/', views.GetClanView.as_view(), name='clan'),
+    path('clan/<int:clan_id>/post', views.CreatePost.as_view(), name='clan'),
     path('clan/<int:clan_id>/become_member/', views.BecomeMember.as_view(), name='member')
 ]
 

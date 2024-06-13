@@ -1,15 +1,18 @@
 import { getClan } from '../api/api';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { ClanPostForm } from '../components/ClanPostForm';
 
 export function Clan() {
     const params = useParams();
     const [clan, setClan] = useState();
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         async function obtenerClan() {
             const res = await getClan(params.id);
-            console.log(res.data);
+            //console.log(res.data);
             setClan(res.data);
         }
         obtenerClan();
@@ -25,9 +28,7 @@ export function Clan() {
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
                             {clan.member.map((member) => (
-                                <li key={member.id}>
-                                    {member.username}
-                                </li>
+                                <li key={member.id}>{member.username}</li>
                             ))}
                         </ul>
                     ) : (
@@ -37,6 +38,7 @@ export function Clan() {
             ) : (
                 <p>Loading...</p>
             )}
+            <ClanPostForm clan={clan} user={user} />
         </div>
     );
 }

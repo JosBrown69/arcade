@@ -1,6 +1,6 @@
-from .models import User, Game, Trophie, Clan, Membership, Trophier, Follower
+from .models import User, Game, Trophie, Clan, Membership, Trophier, Follower, Post
 from rest_framework import generics
-from .serializers import UserSerializer, GameSerializer, TrophieSerializer, ClanSerializer, MemberSerializer, AchieverSerializer, FollowerSerializer
+from .serializers import UserSerializer, GameSerializer, TrophieSerializer, ClanSerializer, MemberSerializer, AchieverSerializer, FollowerSerializer, PostSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 class CreateUserView(generics.CreateAPIView):
@@ -82,6 +82,12 @@ class GetClanView(generics.RetrieveAPIView):
 class BecomeMember(generics.CreateAPIView):
     queryset = Membership.objects.all()
     serializer_class = MemberSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'clan_id'
+
+class CreatePost(generics.CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'clan_id'
 

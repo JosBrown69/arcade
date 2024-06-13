@@ -7,7 +7,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 export function UserForm({ route }) {
     const {
         register,
-        handleSubmit,
+        handleSubmit, 
         formState: { errors },
     } = useForm();
 
@@ -22,7 +22,6 @@ export function UserForm({ route }) {
                 console.log(res);
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                //console.log(res);
                 navigate('/');
                 location.reload()
             } catch (errors) {
