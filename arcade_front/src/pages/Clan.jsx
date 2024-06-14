@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ClanPostForm } from '../components/ClanPostForm';
+import { ClanJoin } from '../components/ClanJoin';
 
 export function Clan() {
     const params = useParams();
@@ -12,7 +13,6 @@ export function Clan() {
     useEffect(() => {
         async function obtenerClan() {
             const res = await getClan(params.id);
-            //console.log(res.data);
             setClan(res.data);
         }
         obtenerClan();
@@ -24,6 +24,7 @@ export function Clan() {
                 <div>
                     <h1>{clan.title}</h1>
                     <p>by: {clan.creator.username}</p>
+                    <ClanJoin clan={clan} user={user}/>
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>

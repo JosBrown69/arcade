@@ -85,6 +85,16 @@ class BecomeMember(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'clan_id'
 
+class DeleteMember(generics.DestroyAPIView):
+    serializer_class = MemberSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'clan_id'
+
+    def get_queryset(self):
+        user = self.request.user
+        return Membership.objects.filter(miembro=user)
+
+
 class CreatePost(generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
