@@ -16,7 +16,7 @@ export function Clan() {
             setClan(res.data);
         }
         obtenerClan();
-    }, [params.id]);
+    }, );
 
     return (
         <div>

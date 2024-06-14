@@ -10,7 +10,7 @@ export function ClanesList({ user, clan }) {
             {miembros.map((miembro) => (
                 <div
                     key={miembro.id}
-                    onClick={() => navigate(`/clan/${miembro.id}`)}
+                    onClick={() => navigate(`/clan/${clan.id}`)}
                 >
                     {miembro.id === user.id ? (
                         <>

@@ -16,14 +16,14 @@ export function ClanJoin({ clan, user }) {
         }
     });
 
-    const onLeave = handleSubmit(async(data) => {
+    const onLeave = handleSubmit(async (data) => {
         try {
-            const id = params.id
-            await leaveClan(id, data)
-        } catch(errors) {
-            console.error(errors)
+            const id = params.id;
+            await leaveClan(id, data);
+        } catch (errors) {
+            console.error(errors);
         }
-    })
+    });
 
     const miembros = clan.member;
     const matchingMember = miembros.find((miembro) => miembro.id === user.id);

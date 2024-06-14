@@ -12,8 +12,7 @@ export function AuthContextProvider(props) {
     useEffect(() => {
         auth().catch(() => setIsAuthorized(false));
         obtenerUser()
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, );
 
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN);
@@ -55,7 +54,6 @@ export function AuthContextProvider(props) {
         const decoded = jwtDecode(jwt)
         try {
             const res = await getUser(decoded.user_id)
-            //console.log('this is getUser res:', res);
             setUser(res.data)
         } catch(error) {
             console.error(error)
