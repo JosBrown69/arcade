@@ -11,7 +11,8 @@ export function UserForm({ route }) {
         formState: { errors },
     } = useForm();
 
-    const [message, setMessage] = useState('') 
+    const [message, setMessage] = useState('')
+    const [logMessage, setLogMessage] = useState('')
 
     const navigate = useNavigate();
 
@@ -24,7 +25,9 @@ export function UserForm({ route }) {
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 navigate('/');
             } catch (errors) {
-                console.log(errors);
+                if((errors.response.data.detail) === 'No active account found with the given credentials'){
+                    setLogMessage('Incorrect User or Password')
+                }
             }
         } else if (route === 'register') {
             try {
@@ -88,7 +91,7 @@ export function UserForm({ route }) {
                 />
                 {errors.password && <span>Password is required</span>}
                 {route === 'login' ? <button>Login</button> : <button>Register</button>}
-                <h2>{message}</h2>
+                {route === 'login' ? <h2>{logMessage}</h2> : <h2>{message}</h2>}
             </form>
         </div>
     );

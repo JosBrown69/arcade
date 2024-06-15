@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ClanPostForm } from '../components/ClanPostForm';
 import { ClanJoin } from '../components/ClanJoin';
+import { ClanPostList } from '../components/ClanPostList';
 
 export function Clan() {
     const params = useParams();
@@ -24,7 +25,7 @@ export function Clan() {
                 <div>
                     <h1>{clan.title}</h1>
                     <p>by: {clan.creator.username}</p>
-                    <ClanJoin clan={clan} user={user}/>
+                    <ClanJoin clan={clan} user={user} />
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
@@ -39,6 +40,7 @@ export function Clan() {
             ) : (
                 <p>Loading...</p>
             )}
+            <ClanPostList clan={clan} user={user}/>
             <ClanPostForm clan={clan} user={user} />
         </div>
     );

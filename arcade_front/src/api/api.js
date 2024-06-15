@@ -26,5 +26,6 @@ export const joinClan = (id, data) => api.post(`/clan/${id}/become_member/`, dat
 export const leaveClan = (id, data) => api.delete(`/clan/${id}/delete_member/`, data)
 export const getClanes = () => api.get('/clanes/')
 export const createPosts = (id, data) => api.post(`/clan/${id}/post`, data)
+export const getPosts = (id) => api.get(`/clan/${id}/posts`)
 export const getTrophies = () => api.get('/trophies/')
 export const getGames = (id) => api.get(`${id}`)

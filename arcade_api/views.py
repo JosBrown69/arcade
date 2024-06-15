@@ -101,6 +101,13 @@ class CreatePost(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'clan_id'
 
+class GetPostList(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'clan_id'
+
+
 """
 Metodos gerics
 
