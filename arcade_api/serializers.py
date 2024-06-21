@@ -86,6 +86,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
+        depth = 2
         fields = '__all__'
 
     def create(self, validated_data):

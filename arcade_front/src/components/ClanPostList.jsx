@@ -1,22 +1,27 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getPosts } from '../api/api';
+import { useNavigate } from 'react-router-dom';
 
-export function ClanPostList({ clan, user }) {
-    const [posts, setPosts] = useState([]);
-    const params = useParams()
+export function ClanPostList({ clan, post }) {
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        async function clanes() {
-            try {
-                //const res = await getPosts(params.id);
-                setPosts(res)
-            } catch (errors) {
-                console.error(errors);
-            }
-        }
-        clanes();
-    }, []);
-
-    return <div></div>
+    if (post) {
+        return (
+            <div>
+                    <div key={post.id}>
+                        {clan.id === post.clan.id && (
+                            <div>
+                                <h3
+                                    onClick={() =>
+                                        navigate(`/user/${post.person.id}`)
+                                    }
+                                >
+                                    {post.person.username}
+                                </h3>
+                                <p>{post.content}</p>
+                            </div>
+                        )}
+                    </div>
+            </div>
+        );
+    }
 }
+

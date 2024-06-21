@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
@@ -7,7 +7,7 @@ export function Navigation() {
 
     return (
         <>
-            <NavLink to='/home' className='active'>
+            <Link to='/home' className='active'>
                 <span>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -22,7 +22,7 @@ export function Navigation() {
                     </svg>
                     Home
                 </span>
-            </NavLink>
+            </Link>
             {isAuthorized && (
                 <NavLink to='/profile' className='active'>
                     <span>

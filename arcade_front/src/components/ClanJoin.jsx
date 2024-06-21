@@ -2,8 +2,11 @@ import { joinClan, leaveClan } from '../api/api';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-export function ClanJoin({ clan, user }) {
+export function ClanJoin({ clan, user, getClan }) {
     const { handleSubmit } = useForm();
+
+    const miembros = clan.member;
+    const matchingMember = miembros.find((miembro) => miembro.id === user.id);
 
     const params = useParams();
 
@@ -16,17 +19,14 @@ export function ClanJoin({ clan, user }) {
         }
     });
 
-    const onLeave = handleSubmit(async (data) => {
+    /* const onLeave = handleSubmit(async (data) => {
         try {
             const id = params.id;
             await leaveClan(id, data);
         } catch (errors) {
             console.error(errors);
         }
-    });
-
-    const miembros = clan.member;
-    const matchingMember = miembros.find((miembro) => miembro.id === user.id);
+    }); */
 
     return (
         <div>
@@ -36,7 +36,7 @@ export function ClanJoin({ clan, user }) {
                 </form>
             ) : (
                 <div>
-                    <form onSubmit={onLeave}>
+                    <form>
                         <button>Leave Group</button>
                     </form>
                 </div>

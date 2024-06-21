@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { createPosts } from '../api/api';
 
-export function ClanPostForm({ clan, user }) {
+export function ClanPostForm({ clan, user, obtener }) {
     const params = useParams();
 
     const {
@@ -15,6 +15,7 @@ export function ClanPostForm({ clan, user }) {
         try {
             const id = params.id;
             const res = await createPosts(id, data);
+            obtener()
             console.log(res);
         } catch (errors) {
             console.error(errors);

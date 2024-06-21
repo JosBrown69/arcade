@@ -12,7 +12,7 @@ export function AuthContextProvider(props) {
     useEffect(() => {
         auth().catch(() => setIsAuthorized(false));
         obtenerUser()
-    }, );
+    }, []);
 
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem(REFRESH_TOKEN);
