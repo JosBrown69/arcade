@@ -7,21 +7,23 @@ export function ClanContextProvider(props) {
     const [clanes, setClanes] = useState([]);
 
     useEffect(() => {
-        async function getClans() {
-            try {
-                const res = await getClanes();
-                setClanes(res.data);
-            } catch (errors) {
-                console.error(errors);
-            }
-        }
         getClans();
     }, []);
+
+    const getClans = async () => {
+        try {
+            const res = await getClanes();
+            setClanes(res.data);
+        } catch (errors) {
+            console.error(errors);
+        }
+    };
 
     return (
         <ClanContext.Provider
             value={{
-                clanes
+                clanes,
+                getClans,
             }}
         >
             {props.children}

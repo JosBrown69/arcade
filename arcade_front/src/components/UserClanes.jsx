@@ -1,9 +1,6 @@
-import { useContext } from 'react';
-import { ClanContext } from '../context/ClanContext';
 import { ClanesList } from './ClanesList';
 
-export function UserClanes({ user }) {
-    const { clanes } = useContext(ClanContext);
+export function UserClanes({ user, clanes }) {
 
     return (
         <div>

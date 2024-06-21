@@ -8,7 +8,6 @@ export function ClanPostForm({ clan, user, obtener }) {
     const {
         register,
         handleSubmit,
-        formState: { errors },
     } = useForm();
 
     const onSubmit = handleSubmit(async (data) => {
@@ -41,9 +40,6 @@ export function ClanPostForm({ clan, user, obtener }) {
                                     required: true,
                                 })}
                             />
-                            {errors.content && (
-                                <span>Must writte somthing</span>
-                            )}
                             <button>Post</button>
                         </form>
                     </div>
