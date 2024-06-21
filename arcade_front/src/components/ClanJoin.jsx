@@ -2,7 +2,7 @@ import { joinClan, leaveClan } from '../api/api';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
-export function ClanJoin({ clan, user, getClan }) {
+export function ClanJoin({ clan, user, update }) {
     const { handleSubmit } = useForm();
 
     const miembros = clan.member;
@@ -14,6 +14,7 @@ export function ClanJoin({ clan, user, getClan }) {
         try {
             const id = params.id;
             await joinClan(id, data);
+            update()
         } catch (errors) {
             console.error(errors);
         }

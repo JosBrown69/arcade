@@ -34,7 +34,7 @@ export function Clan() {
                 <div>
                     <h1>{clan.title}</h1>
                     <p>by: {clan.creator.username}</p>
-                    <ClanJoin clan={clan} user={user} />
+                    <ClanJoin clan={clan} user={user} update={obtenerClan}/>
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
