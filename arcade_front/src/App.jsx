@@ -14,6 +14,8 @@ import { Game } from './pages/Game';
 import { Home } from './pages/Home';
 import { Following } from './pages/Following';
 import { Clan } from './pages/Clan';
+import { Trophie } from './components/Trophie';
+import { User } from './components/User';
 
 function Logout() {
     localStorage.clear();
@@ -40,6 +42,14 @@ function App() {
                                 element={
                                     <ProtectedRoute>
                                         <Profile />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/user/:id'
+                                element={
+                                    <ProtectedRoute>
+                                        <User />
                                     </ProtectedRoute>
                                 }
                             />
@@ -72,6 +82,14 @@ function App() {
                                 element={
                                     <ProtectedRoute>
                                         <Trophies />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/trophie/:id/'
+                                element={
+                                    <ProtectedRoute>
+                                        <Trophie />
                                     </ProtectedRoute>
                                 }
                             />

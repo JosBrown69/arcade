@@ -1,13 +1,15 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export function Navigation() {
-    const { isAuthorized } = useContext(AuthContext);
+    const { user, obtenerUser } = useContext(AuthContext);
+
+    console.log('gallo');
 
     return (
         <>
-            <Link to='/home' className='active'>
+            <NavLink to='/home' className='active'>
                 <span>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -22,8 +24,8 @@ export function Navigation() {
                     </svg>
                     Home
                 </span>
-            </Link>
-            {isAuthorized && (
+            </NavLink>
+            {user && (
                 <NavLink to='/profile' className='active'>
                     <span>
                         <svg
@@ -45,7 +47,7 @@ export function Navigation() {
                     </span>
                 </NavLink>
             )}
-            {isAuthorized && (
+            {user && (
                 <NavLink to='/trophies' className='active'>
                     <span>
                         <svg
@@ -62,7 +64,7 @@ export function Navigation() {
                     </span>
                 </NavLink>
             )}
-            {isAuthorized && (
+            {user && (
                 <NavLink to='/following' className='active'>
                     <span>
                         <svg
@@ -79,7 +81,7 @@ export function Navigation() {
                     </span>
                 </NavLink>
             )}
-            {isAuthorized && (
+            {user && (
                 <NavLink to='/clanes' className='active'>
                     <span>
                         <svg
@@ -96,7 +98,7 @@ export function Navigation() {
                     </span>
                 </NavLink>
             )}
-            {isAuthorized && (
+            {user && (
                 <NavLink to='/chat' className='active'>
                     <span>
                         <svg
@@ -113,8 +115,8 @@ export function Navigation() {
                     </span>
                 </NavLink>
             )}
-            {isAuthorized && (
-                <NavLink to='logout' className='active'>
+            {user && (
+                <NavLink to='logout' className='active' onClick={() => obtenerUser()}>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='30'
@@ -134,12 +136,12 @@ export function Navigation() {
                     </svg>
                 </NavLink>
             )}
-            {isAuthorized === false && (
+            {!user && (
                 <NavLink to='/login' className='active'>
                     <span>Login</span>
                 </NavLink>
             )}
-            {isAuthorized === false && (
+            {!user && (
                 <NavLink to='/register' className='active'>
                     <span>Register</span>
                 </NavLink>

@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { login, registrar } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
+import { AuthContext } from '../context/AuthContext';
 
 export function UserForm({ route }) {
     const {
@@ -10,6 +11,8 @@ export function UserForm({ route }) {
         handleSubmit, 
         formState: { errors },
     } = useForm();
+
+    const { obtenerUser } = useContext(AuthContext);
 
     const [message, setMessage] = useState('')
     const [logMessage, setLogMessage] = useState('')
@@ -23,6 +26,7 @@ export function UserForm({ route }) {
                 console.log(res);
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                obtenerUser()
                 navigate('/');
             } catch (errors) {
                 if((errors.response.data.detail) === 'No active account found with the given credentials'){

@@ -5,12 +5,14 @@ import { AuthContext } from '../context/AuthContext';
 import { ClanPostForm } from '../components/ClanPostForm';
 import { ClanJoin } from '../components/ClanJoin';
 import { ClanPostList } from '../components/ClanPostList';
+import { useNavigate } from 'react-router-dom';
 
 export function Clan() {
     const params = useParams();
     const [clan, setClan] = useState();
     const [posts, setPosts] = useState();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const obtenerClan = async () => {
         const { data } = await getClan(params.id);
@@ -19,7 +21,7 @@ export function Clan() {
     };
 
     const obtenerPosts = async () => {
-        const { data } = await getPosts(params.id)
+        const { data } = await getPosts(params.id);
         setPosts(data);
     };
 
@@ -33,8 +35,8 @@ export function Clan() {
             {clan && posts ? (
                 <div>
                     <h1>{clan.title}</h1>
-                    <p>by: {clan.creator.username}</p>
-                    <ClanJoin clan={clan} user={user} update={obtenerClan}/>
+                    <p onClick={() => navigate(`/user/${clan.creator.id}`)}>by: {clan.creator.username}</p>
+                    <ClanJoin clan={clan} user={user} update={obtenerClan} />
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>

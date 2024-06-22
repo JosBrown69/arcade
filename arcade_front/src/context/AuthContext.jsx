@@ -7,11 +7,11 @@ export const AuthContext = createContext();
 
 export function AuthContextProvider(props) {
     const [isAuthorized, setIsAuthorized] = useState(null);
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState('');
 
     useEffect(() => {
         auth().catch(() => setIsAuthorized(false));
-        obtenerUser()
+        obtenerUser();
     }, []);
 
     const refreshToken = async () => {
@@ -47,24 +47,25 @@ export function AuthContextProvider(props) {
         } else {
             setIsAuthorized(true);
         }
-    }; 
+    };
 
-    async function obtenerUser() {
+    const obtenerUser = async () => {
         const jwt = localStorage.getItem(ACCESS_TOKEN);
-        const decoded = jwtDecode(jwt)
+        const decoded = jwtDecode(jwt);
         try {
-            const res = await getUser(decoded.user_id)
-            setUser(res.data)
-        } catch(error) {
-            console.error(error)
+            const res = await getUser(decoded.user_id);
+            setUser(res.data);
+        } catch (error) {
+            console.error(error);
         }
-    } 
+    };
 
     return (
         <AuthContext.Provider
             value={{
                 isAuthorized,
                 user,
+                obtenerUser,
             }}
         >
             {props.children}

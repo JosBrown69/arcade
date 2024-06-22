@@ -1,10 +1,16 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ClanContext } from '../context/ClanContext';
 
 export function Clanes() {
-    const { clanes } = useContext(ClanContext);
+    const { clanes, getClans } = useContext(ClanContext);
     const navigate = useNavigate();
+
+    console.log('Tilin');
+
+    useEffect(()=>{
+        getClans()
+    }, [])
 
     return (
         <div>
