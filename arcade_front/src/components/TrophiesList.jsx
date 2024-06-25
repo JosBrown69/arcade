@@ -5,6 +5,8 @@ export function TrophiesList({ user, trophie }) {
 
     const ganadores = trophie.achiever;
 
+    console.log(trophie);
+
     return (
         <div>
             {ganadores.map((ganador) => (
@@ -14,7 +16,7 @@ export function TrophiesList({ user, trophie }) {
                 >
                     {ganador.id === user.id ? (
                         <>
-                            {trophie.juego.game}: {trophie.description}
+                            {trophie.trophie}
                         </>
                     ) : null}
                 </div>

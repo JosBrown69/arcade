@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export function ClanPostList({ clan, post }) {
+export function ClanPostList({ clan, post, user }) {
     const navigate = useNavigate();
 
     if (post) {
@@ -9,13 +9,13 @@ export function ClanPostList({ clan, post }) {
                     <div key={post.id}>
                         {clan.id === post.clan.id && (
                             <div>
-                                <h3
+                                {user.id === post.person.id ? (<h3
                                     onClick={() =>
-                                        navigate(`/user/${post.person.id}`)
+                                        navigate(`/profile/`)
                                     }
                                 >
                                     {post.person.username}
-                                </h3>
+                                </h3>) : (<h3 onClick={() => navigate(`/user/${post.person.id}`)}>{post.person.username}</h3>)}
                                 <p>{post.content}</p>
                             </div>
                         )}
