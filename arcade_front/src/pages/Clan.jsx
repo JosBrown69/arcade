@@ -41,7 +41,7 @@ export function Clan() {
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
                             {clan.member.map((member) => (
-                                <li key={member.id}>{member.username}</li>
+                                <li key={member.id} onClick={() => navigate(`/user/${member.id}`)}>{member.username}</li>
                             ))}
                         </ul>
                     ) : (

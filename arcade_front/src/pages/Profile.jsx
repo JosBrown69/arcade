@@ -1,15 +1,18 @@
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { ClanContext } from '../context/ClanContext';
+import { TrophieContext } from '../context/TrophieContext';
 import { UserClanes } from '../components/UserClanes';
 import { UserTrophies } from '../components/UserTrophies';
 
 export function Profile() {
     const { user } = useContext(AuthContext);
     const { clanes, getClans } = useContext(ClanContext);
+    const { trophies, getTrofeos } = useContext(TrophieContext);
 
     useEffect(() => {
         getClans();
+        getTrofeos();
     }, []);
 
     return (
@@ -37,7 +40,7 @@ export function Profile() {
             </div>
             <div>
                 <h2>Trophies</h2>
-                <UserTrophies user={user} />
+                <UserTrophies user={user} trophies={trophies} />
             </div>
         </>
     );

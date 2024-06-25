@@ -1,9 +1,6 @@
-import { useContext } from 'react';
-import { TrophieContext } from '../context/TrophieContext';
 import { TrophiesList } from '../components/TrophiesList';
 
-export function UserTrophies({ user }) {
-    const { trophies } = useContext(TrophieContext);
+export function UserTrophies({ user, trophies }) {
 
     return (
         <div>

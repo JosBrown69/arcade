@@ -6,22 +6,24 @@ export const TrophieContext = createContext();
 export function TrophieContextProvider(props) {
     const [trophies, setTrophies] = useState([]);
 
-    useEffect(() => {
-        async function getTrofeos() {
-            try {
-                const res = await getTrophies();
-                setTrophies(res.data);
-            } catch (errors) {
-                console.error(errors);
-            }
+    const getTrofeos = async () => {
+        try {
+            const { data } = await getTrophies();
+            setTrophies(data);
+        } catch (errors) {
+            console.error(errors);
         }
+    };
+
+    useEffect(() => {
         getTrofeos();
     }, []);
 
     return (
         <TrophieContext.Provider
             value={{
-                trophies
+                trophies,
+                getTrofeos,
             }}
         >
             {props.children}

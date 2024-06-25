@@ -12,8 +12,8 @@ export function ClanContextProvider(props) {
 
     const getClans = async () => {
         try {
-            const res = await getClanes();
-            setClanes(res.data);
+            const { data } = await getClanes();
+            setClanes(data);
         } catch (errors) {
             console.error(errors);
         }
