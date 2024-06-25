@@ -1,8 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { ClanContext } from '../context/ClanContext';
+import { TrophieContext } from '../context/TrophieContext';
 import { getUser } from '../api/api';
+import { UserClanes } from './UserClanes';
+import { UserTrophies } from './UserTrophies';
+
 
 export function User() {
+    const { clanes, getClans } = useContext(ClanContext);
+    const { trophies, getTrofeos } = useContext(TrophieContext);
     const [usuario, setUser] = useState();
     const params = useParams();
 
@@ -14,6 +21,8 @@ export function User() {
 
     useEffect(() => {
         getUsuario();
+        getClans();
+        getTrofeos();
     }, []);
 
     return (
@@ -36,6 +45,14 @@ export function User() {
                         </span>
                         {usuario.username}
                     </h1>
+                    <div>
+                        <h2>Clanes</h2>
+                        <UserClanes user={usuario} clanes={clanes} />
+                    </div>
+                    <div>
+                        <h2>Trophies</h2>
+                        <UserTrophies user={usuario} trophies={trophies} />
+                    </div>
                 </div>
             ) : (
                 <div>
