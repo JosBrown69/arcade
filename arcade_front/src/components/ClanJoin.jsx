@@ -12,7 +12,7 @@ export function ClanJoin({ clan, user, members, update, update2 }) {
     );
     const miMember = todosMembers.filter((member) => member.miembro.id === user.id)
 
-    console.log('soy ese:', miMember);
+    //console.log('soy ese:', miMember[0].id);
 
     const params = useParams();
 
@@ -29,7 +29,7 @@ export function ClanJoin({ clan, user, members, update, update2 }) {
 
     const onLeave = handleSubmit(async () => {
         try {
-            const id = matchingMember.id;
+            const id = miMember[0].id;
             await leaveClan(id);
             update();
             update2();
