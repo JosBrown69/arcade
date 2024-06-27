@@ -79,6 +79,7 @@ class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
         fields = '__all__'
+        depth = 2
 
 class PostSerializer(serializers.ModelSerializer):
     clan = ClanSerializer(read_only=True)

@@ -15,7 +15,7 @@ import { Home } from './pages/Home';
 import { Following } from './pages/Following';
 import { Clan } from './pages/Clan';
 import { Trophie } from './components/Trophie';
-import { User } from './components/User';
+import { User } from './pages/User';
 
 function Logout() {
     localStorage.clear();

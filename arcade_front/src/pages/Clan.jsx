@@ -1,4 +1,4 @@
-import { getClan, getPosts } from '../api/api';
+import { getClan, getPosts, getMembers } from '../api/api';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
@@ -12,8 +12,14 @@ export function Clan() {
     const params = useParams();
     const [clan, setClan] = useState();
     const [posts, setPosts] = useState();
+    const [members, setMembers] = useState();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const obtenerMiembros = async () => {
+        const { data } = await getMembers();
+        setMembers(data);
+    };
 
     const obtenerClan = async () => {
         const { data } = await getClan(params.id);
@@ -28,11 +34,14 @@ export function Clan() {
     useEffect(() => {
         obtenerClan();
         obtenerPosts();
+        obtenerMiembros();
     }, []);
 
+    //console.log(members);
+
     return (
-        <div>
-            {clan && posts ? (
+        <main>
+            {clan && posts && members ? (
                 <div>
                     <h1>{clan.title}</h1>
                     {clan.creator.id === user.id ? (
@@ -44,12 +53,22 @@ export function Clan() {
                             by: {clan.creator.username}
                         </p>
                     )}
-                    <ClanJoin clan={clan} user={user} update={obtenerClan} />
+                    <ClanJoin
+                        clan={clan}
+                        user={user}
+                        members={members}
+                        update={obtenerClan}
+                        update2={obtenerMiembros}
+                    />
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
                             {clan.member.map((usuario) => (
-                                <UserList key={usuario.id} usuario={usuario} user={user}/>
+                                <UserList
+                                    key={usuario.id}
+                                    usuario={usuario}
+                                    user={user}
+                                />
                             ))}
                         </ul>
                     ) : (
@@ -72,6 +91,6 @@ export function Clan() {
             ) : (
                 <p>Loading...</p>
             )}
-        </div>
+        </main>
     );
 }

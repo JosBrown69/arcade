@@ -5,8 +5,8 @@ export function Home() {
     const { isAuthorized } = useContext(AuthContext);
 
     return (
-        <>
-            <div>
+        <main>
+            <header>
                 <h1>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -21,12 +21,12 @@ export function Home() {
                     </svg>
                     Johnny´s Arcade
                 </h1>
-            </div>
+            </header>
             {isAuthorized === false && (
-                <div>
+                <section>
                     <p>Log to access more games</p>
-                </div>
+                </section>
             )}
-        </>
+        </main>
     );
 }

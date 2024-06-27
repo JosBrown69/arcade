@@ -23,6 +23,7 @@ urlpatterns = [
     path('clan/<int:clan_id>/post', views.CreatePost.as_view(), name='clan_post'),
     path('clan/<int:clan_id>/posts', views.GetPostList.as_view(), name='clan_posts'),
     path('clan/<int:clan_id>/become_member/', views.BecomeMember.as_view(), name='member'),
-    path('clan/<int:clan_id>/delete_member/', views.DeleteMember.as_view(), name='member_delete')
+    path('member/<int:member_id>/delete/', views.DeleteMember.as_view(), name='member_delete'),
+    path('members/', views.RetriveMembers.as_view(), name='getMember')
 ]
 

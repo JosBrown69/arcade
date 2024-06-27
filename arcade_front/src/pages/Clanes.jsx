@@ -6,14 +6,12 @@ export function Clanes() {
     const { clanes, getClans } = useContext(ClanContext);
     const navigate = useNavigate();
 
-    console.log('Tilin');
-
     useEffect(()=>{
         getClans()
     }, [])
 
     return (
-        <div>
+        <main>
             {clanes.length > 0 ? (
                 clanes.map((clan) => (
                     <div
@@ -32,6 +30,6 @@ export function Clanes() {
             ) : (
                 <div>Loading Clanes...</div>
             )}
-        </div>
+        </main>
     );
 }

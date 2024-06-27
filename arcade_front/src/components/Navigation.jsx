@@ -5,10 +5,8 @@ import { AuthContext } from '../context/AuthContext';
 export function Navigation() {
     const { user, obtenerUser } = useContext(AuthContext);
 
-    console.log('gallo');
-
     return (
-        <>
+        <nav>
             <NavLink to='/home' className='active'>
                 <span>
                     <svg
@@ -146,6 +144,6 @@ export function Navigation() {
                     <span>Register</span>
                 </NavLink>
             )}
-        </>
+        </nav>
     );
 }

@@ -19,10 +19,6 @@ class GetUserListView(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        user = self.request.user.id
-        return User.objects.get(id=user)
-
 class FollowerView(generics.CreateAPIView):
     queryset = Follower.objects.all()
     serializer_class = FollowerSerializer
@@ -32,6 +28,7 @@ class FollowerView(generics.CreateAPIView):
 class FollowerListView(generics.ListAPIView):
     serializer_class = FollowerSerializer
     permission_classes = [IsAuthenticated]
+    
     def get_queryset(self):
         user = self.request.user
         return Follower.objects.filter(seguidor=user) 
@@ -88,12 +85,17 @@ class BecomeMember(generics.CreateAPIView):
 class DeleteMember(generics.DestroyAPIView):
     serializer_class = MemberSerializer
     permission_classes = [IsAuthenticated]
-    lookup_url_kwarg = 'clan_id'
+    lookup_url_kwarg = 'member_id'
+    #queryset = Membership.objects.all()
 
     def get_queryset(self):
         user = self.request.user
         return Membership.objects.filter(miembro=user)
 
+class RetriveMembers(generics.ListAPIView):
+    serializer_class = MemberSerializer
+    permission_classes = [IsAuthenticated]
+    queryset = Membership.objects.all()
 
 class CreatePost(generics.CreateAPIView):
     queryset = Post.objects.all()
