@@ -23,7 +23,6 @@ export function UserForm({ route }) {
         if (route === 'login') {
             try {
                 const res = await login(data);
-                console.log(res);
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 obtenerUser()

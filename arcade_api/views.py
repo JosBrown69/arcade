@@ -86,7 +86,6 @@ class DeleteMember(generics.DestroyAPIView):
     serializer_class = MemberSerializer
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'member_id'
-    #queryset = Membership.objects.all()
 
     def get_queryset(self):
         user = self.request.user

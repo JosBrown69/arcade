@@ -17,17 +17,28 @@ api.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
+// user API
 export const registrar = (data) => api.post(`/user/register/`, data)
 export const login = (data) => api.post('/token/', data)
 export const getUser = (id) => api.get(`/user/${id}`)
+
+// follow/unfollow API
+
+export const following = () => api.get('/user/following/')
+export const follow = (id) => api.post(`/user/${id}/follow/`)
+
+//clan API
 export const getClan = (id) => api.get(`/clan/${id}`)
 export const joinClan = (id, data) => api.post(`/clan/${id}/become_member/`, data)
 export const getMembers = () => api.get('/members/')
 export const leaveClan = (id) => api.delete(`/member/${id}/delete/`)
 export const getClanes = () => api.get('/clanes/')
-export const createPosts = (id, data) => api.post(`/clan/${id}/post`, data)
+
+//clan posts API
+export const createPosts = (id, data) => api.post(`/clan/${id}/post/`, data)
 export const getPosts = (id) => api.get(`/clan/${id}/posts`)
+
+//Trophies API
 export const getTrophies = () => api.get('/trophies/')
 export const getTrophie = (id) => api.get(`/trophie/${id}`)
 export const getGames = (id) => api.get(`${id}`)

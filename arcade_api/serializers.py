@@ -25,7 +25,7 @@ class FollowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follower
         fields = '__all__'
-        extra_kwargs = {'achiever':{'read_only':True}}
+        depth = 2
 
 class TrophieSerializer(serializers.ModelSerializer):
     class Meta:

@@ -6,13 +6,21 @@ import { AuthContext } from '../context/AuthContext';
 import { getUser } from '../api/api';
 import { UserClanes } from '../components/UserClanes';
 import { UserTrophies } from '../components/UserTrophies';
+import { FollowButton } from '../components/FollowButton';
+import { following } from '../api/api';
 
 export function User() {
     const { clanes, getClans } = useContext(ClanContext);
     const { trophies, getTrofeos } = useContext(TrophieContext);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const [usuario, setUser] = useState();
     const params = useParams();
+    const [isFollowing, setFollowing] = useState();
+
+    const getFollowing = async () => {
+        const { data } = await following();
+        setFollowing(data);
+    };
 
     const getUsuario = async () => {
         const { data } = await getUser(params.id);
@@ -21,6 +29,7 @@ export function User() {
 
     useEffect(() => {
         getUsuario();
+        getFollowing();
         getClans();
         getTrofeos();
     }, []);
@@ -45,7 +54,15 @@ export function User() {
                         </span>
                         {usuario.username}
                     </h1>
-                    {usuario.id != user.id && (<button>Follow</button>)}
+                    <p>Following </p>
+                    <p>Followers </p>
+                    <FollowButton
+                        perfil={usuario}
+                        user={user}
+                        isFollowing={isFollowing}
+                        update={getUsuario}
+                        update2={getFollowing}
+                    />
                     <div>
                         <h2>Clanes</h2>
                         <UserClanes user={usuario} clanes={clanes} />
