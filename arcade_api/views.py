@@ -28,10 +28,7 @@ class FollowerView(generics.CreateAPIView):
 class FollowerListView(generics.ListAPIView):
     serializer_class = FollowerSerializer
     permission_classes = [IsAuthenticated]
-    
-    def get_queryset(self):
-        user = self.request.user
-        return Follower.objects.filter(seguidor=user) 
+    queryset = Follower.objects.all()
     
 class FollowerDelete(generics.DestroyAPIView):
     serializer_class = FollowerSerializer

@@ -20,7 +20,7 @@ api.interceptors.request.use(
 // user API
 export const registrar = (data) => api.post(`/user/register/`, data)
 export const login = (data) => api.post('/token/', data)
-export const getUser = (id) => api.get(`/user/${id}`)
+export const getUser = (id) => api.get(`/user/${id}/`)
 
 // follow/unfollow API
 
@@ -37,7 +37,7 @@ export const getClanes = () => api.get('/clanes/')
 
 //clan posts API
 export const createPosts = (id, data) => api.post(`/clan/${id}/post/`, data)
-export const getPosts = (id) => api.get(`/clan/${id}/posts`)
+export const getPosts = (id) => api.get(`/clan/${id}/posts/`)
 
 //Trophies API
 export const getTrophies = () => api.get('/trophies/')

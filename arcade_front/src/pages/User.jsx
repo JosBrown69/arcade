@@ -7,13 +7,14 @@ import { UserClanes } from '../components/UserClanes';
 import { UserTrophies } from '../components/UserTrophies';
 import { FollowButton } from '../components/FollowButton';
 import { following } from '../api/api';
+import { FollowCount } from '../components/FollowCount';
 
 export function User() {
     const { clanes, getClans } = useContext(ClanContext);
     const { trophies, getTrofeos } = useContext(TrophieContext);
     const [usuario, setUser] = useState();
     const params = useParams();
-    const [isFollowing, setFollowing] = useState();
+    const [followers, setFollowing] = useState();
 
     const getFollowing = async () => {
         const { data } = await following();
@@ -34,7 +35,7 @@ export function User() {
 
     return (
         <div>
-            {usuario ? (
+            {usuario && followers ? (
                 <div>
                     <h1>
                         <span>
@@ -52,11 +53,10 @@ export function User() {
                         </span>
                         {usuario.username}
                     </h1>
-                    <p>Following </p>
-                    <p>Followers </p>
+                    <FollowCount follows={followers} user={usuario}/>
                     <FollowButton
                         perfil={usuario}
-                        isFollowing={isFollowing}
+                        isFollowing={followers}
                         update={getUsuario}
                         update2={getFollowing}
                     />

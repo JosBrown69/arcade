@@ -12,8 +12,6 @@ export function ClanJoin({ clan, user, members, update, update2 }) {
     );
     const miMember = todosMembers.find((member) => member.miembro.id === user.id)
 
-    console.log(members);
-
     const params = useParams();
 
     const onSubmit = handleSubmit(async (data) => {

@@ -53,8 +53,8 @@ export function AuthContextProvider(props) {
         const jwt = localStorage.getItem(ACCESS_TOKEN);
         const decoded = jwtDecode(jwt);
         try {
-            const res = await getUser(decoded.user_id);
-            setUser(res.data);
+            const { data } = await getUser(decoded.user_id);
+            setUser(data);
         } catch (error) {
             console.error(error);
         }

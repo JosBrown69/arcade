@@ -12,8 +12,6 @@ export function FollowButton({ perfil, update, update2, isFollowing }) {
         isFollowing?.find((follower) => follower.siguiendo.id === perfil.id)
             ?.id || null;
 
-    console.log(deleteId);
-
     const seguir = handleSubmit(async () => {
         try {
             await follow(perfil.id);
