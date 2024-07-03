@@ -1,12 +1,18 @@
 import { useForm } from 'react-hook-form';
-import { follow } from '../api/api';
+import { follow, unfollow } from '../api/api';
 
-export function FollowButton({ perfil, user, update, update2, isFollowing }) {
+export function FollowButton({ perfil, update, update2, isFollowing }) {
     const { handleSubmit } = useForm();
 
     const iFollowId =
         isFollowing?.find((follower) => follower.siguiendo.id === perfil.id)
             ?.seguidor.id || null;
+
+    const deleteId =
+        isFollowing?.find((follower) => follower.siguiendo.id === perfil.id)
+            ?.id || null;
+
+    console.log(deleteId);
 
     const seguir = handleSubmit(async () => {
         try {
@@ -18,10 +24,20 @@ export function FollowButton({ perfil, user, update, update2, isFollowing }) {
         }
     });
 
+    const unSeguir = handleSubmit(async () => {
+        try {
+            await unfollow(deleteId)
+            update()
+            update2()
+        } catch(errors){
+            console.error(errors)
+        }
+    })
+
     return (
         <div>
             {iFollowId ? (
-                <form>
+                <form onSubmit={unSeguir}>
                     <button>Unfollow</button>
                 </form>
             ) : (

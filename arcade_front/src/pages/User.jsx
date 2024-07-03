@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ClanContext } from '../context/ClanContext';
 import { TrophieContext } from '../context/TrophieContext';
-import { AuthContext } from '../context/AuthContext';
 import { getUser } from '../api/api';
 import { UserClanes } from '../components/UserClanes';
 import { UserTrophies } from '../components/UserTrophies';
@@ -12,7 +11,6 @@ import { following } from '../api/api';
 export function User() {
     const { clanes, getClans } = useContext(ClanContext);
     const { trophies, getTrofeos } = useContext(TrophieContext);
-    const { user } = useContext(AuthContext);
     const [usuario, setUser] = useState();
     const params = useParams();
     const [isFollowing, setFollowing] = useState();
@@ -58,7 +56,6 @@ export function User() {
                     <p>Followers </p>
                     <FollowButton
                         perfil={usuario}
-                        user={user}
                         isFollowing={isFollowing}
                         update={getUsuario}
                         update2={getFollowing}

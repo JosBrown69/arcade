@@ -26,6 +26,7 @@ export const getUser = (id) => api.get(`/user/${id}`)
 
 export const following = () => api.get('/user/following/')
 export const follow = (id) => api.post(`/user/${id}/follow/`)
+export const unfollow = (id) => api.delete(`/unfollow/${id}/`)
 
 //clan API
 export const getClan = (id) => api.get(`/clan/${id}`)

@@ -8,6 +8,7 @@ urlpatterns = [
     path('user/register/', views.CreateUserView.as_view(), name='register'),
     path('user/<int:user_id>/', views.GetUserView.as_view(), name='user'),
     path('user/<int:user_id>/follow/', views.FollowerView.as_view(), name='user'),
+    path('unfollow/<int:follower_id>/', views.FollowerDelete.as_view(), name='unfollow'),
     path('user/following/', views.FollowerListView.as_view(), name='following'),
     path('users/', views.GetUserListView.as_view(), name='users'),
     path("token/", TokenObtainPairView.as_view(), name="get_token"),
