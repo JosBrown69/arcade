@@ -32,7 +32,7 @@ export function Trophies() {
                     </div>
                 ))
             ) : (
-                <div>Loading Trophies...</div>
+                <div>Loading...</div>
             )}
         </div>
     );

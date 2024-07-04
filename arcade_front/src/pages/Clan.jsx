@@ -46,7 +46,7 @@ export function Clan() {
                     <h1>{clan.title}</h1>
                     {clan.creator.id === user.id ? (
                         <p onClick={() => navigate(`/profile/`)}>
-                            by:{clan.creator.username}
+                            Founder {clan.creator.username}
                         </p>
                     ) : (
                         <p onClick={() => navigate(`/user/${clan.creator.id}`)}>

@@ -53,7 +53,7 @@ export function User() {
                         </span>
                         {usuario.username}
                     </h1>
-                    <FollowCount follows={followers} user={usuario}/>
+                    <FollowCount follows={followers} user={usuario} />
                     <FollowButton
                         perfil={usuario}
                         isFollowing={followers}
@@ -70,9 +70,7 @@ export function User() {
                     </div>
                 </div>
             ) : (
-                <div>
-                    <p>Loading...</p>
-                </div>
+                <div>Loading...</div>
             )}
         </div>
     );

@@ -28,7 +28,7 @@ export function Clanes() {
                     </div>
                 ))
             ) : (
-                <div>Loading Clanes...</div>
+                <div>Loading...</div>
             )}
         </main>
     );
