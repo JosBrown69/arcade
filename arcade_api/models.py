@@ -43,6 +43,7 @@ class Trophier(models.Model):
     
 class Clan(models.Model):
     title = models.CharField(max_length=20)
+    description = models.TextField(blank=True)
     creator = models.ForeignKey('User', on_delete=models.CASCADE, related_name='creator')
     member = models.ManyToManyField('User', through="Membership", related_name='clans')
     posts = models.ManyToManyField('User', through='Post', related_name='posts' )

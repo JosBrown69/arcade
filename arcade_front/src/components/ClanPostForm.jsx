@@ -28,7 +28,7 @@ export function ClanPostForm({ clan, user, obtener }) {
         );
         return (
             <div>
-                {matchingMember && (
+                {matchingMember || clan.creator.id === user.id && (
                     <div>
                         <form onSubmit={onSubmit}>
                             <textarea

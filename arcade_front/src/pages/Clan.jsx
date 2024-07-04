@@ -6,7 +6,7 @@ import { ClanPostForm } from '../components/ClanPostForm';
 import { ClanJoin } from '../components/ClanJoin';
 import { ClanPostList } from '../components/ClanPostList';
 import { useNavigate } from 'react-router-dom';
-import { UserList } from '../components/UserList';
+import { ClanMemberList } from '../components/ClanMemberList';
 
 export function Clan() {
     const params = useParams();
@@ -37,8 +37,6 @@ export function Clan() {
         obtenerMiembros();
     }, []);
 
-    //console.log(members);
-
     return (
         <main>
             {clan && posts && members ? (
@@ -50,21 +48,21 @@ export function Clan() {
                         </p>
                     ) : (
                         <p onClick={() => navigate(`/user/${clan.creator.id}`)}>
-                            by: {clan.creator.username}
+                            Founder {clan.creator.username}
                         </p>
                     )}
-                    <ClanJoin
+                    {clan.creator.id != user.id && (<ClanJoin
                         clan={clan}
                         user={user}
                         members={members}
                         update={obtenerClan}
                         update2={obtenerMiembros}
-                    />
+                    />)}
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
                             {clan.member.map((usuario) => (
-                                <UserList
+                                <ClanMemberList
                                     key={usuario.id}
                                     usuario={usuario}
                                     user={user}
@@ -72,7 +70,9 @@ export function Clan() {
                             ))}
                         </ul>
                     ) : (
-                        <p>No members yet.</p>
+                        <div>
+                            <p>No members yet</p>
+                        </div>
                     )}
                     {posts.map((post) => (
                         <ClanPostList
