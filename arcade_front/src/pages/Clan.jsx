@@ -22,8 +22,13 @@ export function Clan() {
     };
 
     const obtenerClan = async () => {
-        const { data } = await getClan(params.id);
-        setClan(data);
+        try {
+            const { data } = await getClan(params.id);
+            setClan(data);
+        } catch (errors) {
+            console.error(errors);
+            navigate('/NotFound/')
+        }
     };
 
     const obtenerPosts = async () => {
@@ -51,13 +56,15 @@ export function Clan() {
                             Founder {clan.creator.username}
                         </p>
                     )}
-                    {clan.creator.id != user.id && (<ClanJoin
-                        clan={clan}
-                        user={user}
-                        members={members}
-                        update={obtenerClan}
-                        update2={obtenerMiembros}
-                    />)}
+                    {clan.creator.id != user.id && (
+                        <ClanJoin
+                            clan={clan}
+                            user={user}
+                            members={members}
+                            update={obtenerClan}
+                            update2={obtenerMiembros}
+                        />
+                    )}
                     <h2>Members</h2>
                     {clan.member && clan.member.length > 0 ? (
                         <ul>
@@ -74,14 +81,17 @@ export function Clan() {
                             <p>No members yet</p>
                         </div>
                     )}
-                    {posts.map((post) => (
-                        <ClanPostList
-                            clan={clan}
-                            user={user}
-                            post={post}
-                            key={post.id}
-                        />
-                    ))}
+                    <section>
+                        {posts.map((post) => (
+                            <ClanPostList
+                                clan={clan}
+                                user={user}
+                                post={post}
+                                key={post.id}
+                            />
+                        ))}
+                        <div>{posts.length < 1 && <h3>No posts yet</h3>}</div>
+                    </section>
                     <ClanPostForm
                         clan={clan}
                         user={user}

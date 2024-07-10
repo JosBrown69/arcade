@@ -27,7 +27,7 @@ export function Profile() {
 
     return (
         <div>
-            {user && followers ? (
+            {user && followers && clanes ? (
                 <div>
                     <h1>
                         <span>

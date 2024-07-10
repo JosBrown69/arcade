@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ClanContext } from '../context/ClanContext';
 import { TrophieContext } from '../context/TrophieContext';
 import { getUser } from '../api/api';
@@ -15,6 +15,7 @@ export function User() {
     const [usuario, setUser] = useState();
     const params = useParams();
     const [followers, setFollowing] = useState();
+    const navigate = useNavigate()
 
     const getFollowing = async () => {
         const { data } = await following();
@@ -22,8 +23,13 @@ export function User() {
     };
 
     const getUsuario = async () => {
-        const { data } = await getUser(params.id);
-        setUser(data);
+        try {
+            const { data } = await getUser(params.id);
+            setUser(data);
+        } catch (errors) {
+            console.error(errors);
+            navigate('/NotFound/')
+        }
     };
 
     useEffect(() => {

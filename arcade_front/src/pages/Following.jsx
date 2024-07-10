@@ -28,8 +28,15 @@ export function Following() {
                             user={user}
                         />
                     ))}
+                    <div>
+                        {followers.length < 1 && (
+                            <h2>Start following people to see them here!</h2>
+                        )}
+                    </div>
                 </div>
-            ):(<div>Loading...</div>)}
+            ) : (
+                <div>Loading...</div>
+            )}
         </div>
     );
 }

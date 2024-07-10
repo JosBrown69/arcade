@@ -18,6 +18,7 @@ export function ClanJoin({ clan, user, members, update, update2 }) {
         try {
             const id = params.id;
             await joinClan(id, data);
+            console.log(data);
             update();
             update2();
         } catch (errors) {

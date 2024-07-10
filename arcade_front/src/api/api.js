@@ -39,6 +39,10 @@ export const getClanes = () => api.get('/clanes/')
 export const createPosts = (id, data) => api.post(`/clan/${id}/post/`, data)
 export const getPosts = (id) => api.get(`/clan/${id}/posts/`)
 
+//Clan create/delete API
+
+export const clanCreate = (data) => api.post('/clan/create/', data) 
+
 //Trophies API
 export const getTrophies = () => api.get('/trophies/')
 export const getTrophie = (id) => api.get(`/trophie/${id}`)

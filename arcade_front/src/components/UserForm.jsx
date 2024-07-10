@@ -26,7 +26,8 @@ export function UserForm({ route }) {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
                 obtenerUser()
-                navigate('/');
+                navigate('/')
+                location.reload()
             } catch (errors) {
                 if((errors.response.data.detail) === 'No active account found with the given credentials'){
                     setLogMessage('Incorrect User or Password')
