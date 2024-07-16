@@ -7,6 +7,7 @@ import { ClanJoin } from '../components/ClanJoin';
 import { ClanPostList } from '../components/ClanPostList';
 import { useNavigate } from 'react-router-dom';
 import { ClanMemberList } from '../components/ClanMemberList';
+import { Spinner } from '@chakra-ui/react';
 
 export function Clan() {
     const params = useParams();
@@ -27,7 +28,7 @@ export function Clan() {
             setClan(data);
         } catch (errors) {
             console.error(errors);
-            navigate('/NotFound/')
+            navigate('/NotFound/');
         }
     };
 
@@ -99,7 +100,16 @@ export function Clan() {
                     />
                 </div>
             ) : (
-                <p>Loading...</p>
+                <>
+                    <p>Loading...</p>
+                    <Spinner
+                        size='xl'
+                        speed='0.5s'
+                        emptyColor='gray.200'
+                        thickness='3px'
+                        color='yellow.500'
+                    />
+                </>
             )}
         </main>
     );

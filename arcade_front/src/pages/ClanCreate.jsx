@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { clanCreate, joinClan } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { ClanContext } from '../context/ClanContext';
+import { Spinner } from '@chakra-ui/react';
 
 export function ClanCreate() {
     const {
@@ -21,9 +22,9 @@ export function ClanCreate() {
     const onSubmit = handleSubmit(async (data) => {
         try {
             const res = await clanCreate(data);
-            navigate(`/clan/${res.data.id}`)
-            await joinClan(res.data.id, data)
-            getClans()
+            navigate(`/clan/${res.data.id}`);
+            await joinClan(res.data.id, data);
+            getClans();
         } catch (errors) {
             console.error(errors);
         }
@@ -31,7 +32,7 @@ export function ClanCreate() {
 
     return (
         <main>
-            {clanes && (
+            {clanes ? (
                 <section>
                     <header>
                         <h1>Create a Clan</h1>
@@ -56,6 +57,17 @@ export function ClanCreate() {
                         </form>
                     </section>
                 </section>
+            ) : (
+                <>
+                    <p>Loading...</p>
+                    <Spinner
+                        size='xl'
+                        speed='0.5s'
+                        emptyColor='gray.200'
+                        thickness='3px'
+                        color='yellow.500'
+                    />
+                </>
             )}
         </main>
     );

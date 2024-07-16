@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { following } from '../api/api';
 import { AuthContext } from '../context/AuthContext';
 import { FollowingList } from '../components/FollowingList';
+import { Spinner } from '@chakra-ui/react';
 
 export function Following() {
     const [followers, setFollowing] = useState();
@@ -35,7 +36,16 @@ export function Following() {
                     </div>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <>
+                    <div>Loading...</div>
+                    <Spinner
+                        size='xl'
+                        speed='0.5s'
+                        emptyColor='gray.200'
+                        thickness='3px'
+                        color='yellow.500'
+                    />
+                </>
             )}
         </div>
     );

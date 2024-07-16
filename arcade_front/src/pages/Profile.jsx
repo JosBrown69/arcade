@@ -6,6 +6,7 @@ import { UserClanes } from '../components/UserClanes';
 import { UserTrophies } from '../components/UserTrophies';
 import { FollowCount } from '../components/FollowCount';
 import { following } from '../api/api';
+import { Spinner } from '@chakra-ui/react';
 
 export function Profile() {
     const { user, obtenerUser } = useContext(AuthContext);
@@ -45,7 +46,8 @@ export function Profile() {
                         </span>
                         {user.username}
                     </h1>
-                    <FollowCount user={user} follows={followers}/>
+                    <span>({user.gender})</span>
+                    <FollowCount user={user} follows={followers} />
                     <div>
                         <h2>Clanes</h2>
                         <UserClanes user={user} clanes={clanes} />
@@ -56,7 +58,16 @@ export function Profile() {
                     </div>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <>
+                    <div>Loading...</div>
+                    <Spinner
+                        size='xl'
+                        speed='0.5s'
+                        emptyColor='gray.200'
+                        thickness='3px'
+                        color='yellow.500'
+                    />
+                </>
             )}
         </div>
     );

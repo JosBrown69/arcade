@@ -52,8 +52,8 @@ export function UserForm({ route }) {
     });
 
     return (
-        <div>
-            {route === 'login' ? <h2>Login</h2> : <h2>Register</h2>}
+        <div className='form-body'>
+            {route === 'login' ? <h2 className='title'>Login</h2> : <h2 className='title'>Register</h2>}
             <form onSubmit={onSubmit}>
                 <input
                     type='text'
@@ -64,25 +64,32 @@ export function UserForm({ route }) {
                 />
                 {errors.username && <span>Title is required</span>}
                 {route === 'register' && (
-                    <div>
+                    <div className='radio-group'>
+                        <section className='radio-option'>
                         <input
+                            className=''
                             type='radio'
                             value='male'
                             {...register('gender', { required: true })}
                         />
                         <label htmlFor='male'>Male</label>
+                        </section>
+                        <section className='radio-option'>
                         <input
                             type='radio'
                             value='female'
                             {...register('gender', { required: true })}
                         />
                         <label htmlFor='female'>Female</label>
+                        </section>
+                        <section className='radio-option'>
                         <input
                             type='radio'
                             value='philipino'
                             {...register('gender', { required: true })}
                         />
                         <label htmlFor='philipino'>Philipino</label>
+                        </section>
                         {errors.gender && <span>Gender is required</span>}
                     </div>
                 )}

@@ -8,6 +8,7 @@ import { UserTrophies } from '../components/UserTrophies';
 import { FollowButton } from '../components/FollowButton';
 import { following } from '../api/api';
 import { FollowCount } from '../components/FollowCount';
+import { Spinner } from '@chakra-ui/react';
 
 export function User() {
     const { clanes, getClans } = useContext(ClanContext);
@@ -15,7 +16,7 @@ export function User() {
     const [usuario, setUser] = useState();
     const params = useParams();
     const [followers, setFollowing] = useState();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const getFollowing = async () => {
         const { data } = await following();
@@ -28,7 +29,7 @@ export function User() {
             setUser(data);
         } catch (errors) {
             console.error(errors);
-            navigate('/NotFound/')
+            navigate('/NotFound/');
         }
     };
 
@@ -76,7 +77,16 @@ export function User() {
                     </div>
                 </div>
             ) : (
-                <div>Loading...</div>
+                <>
+                    <div>Loading...</div>
+                    <Spinner
+                        size='xl'
+                        speed='0.5s'
+                        emptyColor='gray.200'
+                        thickness='3px'
+                        color='yellow.500'
+                    />
+                </>
             )}
         </div>
     );

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getTrophie } from '../api/api';
+import { Spinner } from '@chakra-ui/react';
 
 export function Trophie() {
     const params = useParams();
@@ -37,7 +38,16 @@ export function Trophie() {
                 </div>
             ) : (
                 <div>
-                    <p>Loading...</p>
+                    <>
+                        <p>Loading...</p>
+                        <Spinner
+                            size='xl'
+                            speed='0.5s'
+                            emptyColor='gray.200'
+                            thickness='3px'
+                            color='yellow.500'
+                        />
+                    </>
                 </div>
             )}
         </div>

@@ -17,10 +17,11 @@ import { Clanes } from './pages/Clanes';
 import { ClanCreate } from './pages/ClanCreate';
 import { Trophie } from './components/Trophie';
 import { User } from './pages/User';
+import { Chat } from './pages/Chat';
 
 function Logout() {
     localStorage.clear();
-    return <Navigate to='/login' />
+    return <Navigate to='/login' />;
 }
 
 function App() {
@@ -99,6 +100,14 @@ function App() {
                                 element={
                                     <ProtectedRoute>
                                         <Trophie />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path='/chat/'
+                                element={
+                                    <ProtectedRoute>
+                                        <Chat />
                                     </ProtectedRoute>
                                 }
                             />
