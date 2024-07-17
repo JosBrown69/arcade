@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ClanContext } from '../context/ClanContext';
+import { AuthContext } from '../context/AuthContext';
 import { TrophieContext } from '../context/TrophieContext';
 import { getUser } from '../api/api';
 import { UserClanes } from '../components/UserClanes';
@@ -13,6 +14,7 @@ import { Spinner } from '@chakra-ui/react';
 export function User() {
     const { clanes, getClans } = useContext(ClanContext);
     const { trophies, getTrofeos } = useContext(TrophieContext);
+    const { user } = useContext(AuthContext);
     const [usuario, setUser] = useState();
     const params = useParams();
     const [followers, setFollowing] = useState();
@@ -66,6 +68,7 @@ export function User() {
                         isFollowing={followers}
                         update={getUsuario}
                         update2={getFollowing}
+                        user={user}
                     />
                     <div>
                         <h2>Clanes</h2>
