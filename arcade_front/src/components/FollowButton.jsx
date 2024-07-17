@@ -1,19 +1,22 @@
 import { useForm } from 'react-hook-form';
 import { follow, unfollow } from '../api/api';
+import { GoodButton, BadButton } from '../components/Buttons';
 
 export function FollowButton({ perfil, update, update2, isFollowing, user }) {
     const { handleSubmit } = useForm();
 
-    const iFollowId =
-        isFollowing?.find((follower) => follower.siguiendo.id === perfil.id && follower.seguidor.id === user.id)
-
-    console.log('user_id', user.id);
-    console.log('Followers :', isFollowing);
-    console.log('is Following:', iFollowId);
+    const iFollowId = isFollowing?.find(
+        (follower) =>
+            follower.siguiendo.id === perfil.id &&
+            follower.seguidor.id === user.id
+    );
 
     const deleteId =
-        isFollowing?.find((follower) => follower.siguiendo.id === perfil.id && follower.seguidor.id === user.id)
-            ?.id || null;
+        isFollowing?.find(
+            (follower) =>
+                follower.siguiendo.id === perfil.id &&
+                follower.seguidor.id === user.id
+        )?.id || null;
 
     const seguir = handleSubmit(async () => {
         try {
@@ -27,23 +30,24 @@ export function FollowButton({ perfil, update, update2, isFollowing, user }) {
 
     const unSeguir = handleSubmit(async () => {
         try {
-            await unfollow(deleteId)
-            update()
-            update2()
-        } catch(errors){
-            console.error(errors)
+            await unfollow(deleteId);
+            update();
+            update2();
+            console.log('CLick');
+        } catch (errors) {
+            console.error(errors);
         }
-    })
+    });
 
     return (
         <div>
             {iFollowId ? (
                 <form onSubmit={unSeguir}>
-                    <button>Unfollow</button>
+                    <BadButton>Unfollow</BadButton>
                 </form>
             ) : (
                 <form onSubmit={seguir}>
-                    <button>Follow</button>
+                    <GoodButton>Follow</GoodButton>
                 </form>
             )}
         </div>

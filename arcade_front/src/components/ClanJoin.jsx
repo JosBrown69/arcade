@@ -1,6 +1,7 @@
 import { joinClan, leaveClan } from '../api/api';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
+import {GoodButton, BadButton} from './Buttons'
 
 export function ClanJoin({ clan, user, members, update, update2 }) {
     const { handleSubmit } = useForm();
@@ -18,7 +19,6 @@ export function ClanJoin({ clan, user, members, update, update2 }) {
         try {
             const id = params.id;
             await joinClan(id, data);
-            console.log(data);
             update();
             update2();
         } catch (errors) {
@@ -41,12 +41,12 @@ export function ClanJoin({ clan, user, members, update, update2 }) {
         <div>
             {clan && !matchingMember ? (
                 <form onSubmit={onSubmit}>
-                    <button>Join</button>
+                    <GoodButton>Join</GoodButton>
                 </form>
             ) : (
                 <div>
                     <form onSubmit={onLeave}>
-                        <button>Leave Group</button>
+                        <BadButton>Leave Clan</BadButton>
                     </form>
                 </div>
             )}
