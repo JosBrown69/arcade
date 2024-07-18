@@ -119,7 +119,7 @@ export function UserForm({ route }) {
                             </Stack>
                         </RadioGroup>
                     )}
-                    <PasswordInput
+                    <PasswordInput id='password' name='password'
                         {...register('password', { required: true })}
                     />
                     {errors.password && (

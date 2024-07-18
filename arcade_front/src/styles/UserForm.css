@@ -11,6 +11,18 @@
 
 .gender {
     font-size: 1.3rem;
-    padding: 1rem 0;
+    padding: 0.5rem 0 1rem 0;
     font-weight: bold;
+}
+
+@media(max-width: 400px){
+    .form-body {
+        margin: 2rem auto;
+        max-width: 70%;
+    }
+    .title {
+        font-size: 2rem;
+        padding: 0.5rem 0 1rem 0;
+        font-weight: bold;
+    }
 }

@@ -8,6 +8,8 @@ export function PasswordInput() {
     return (
         <InputGroup size='md'>
             <Input
+                name='password'
+                id='password'
                 variant='flushed'
                 type={show ? 'text' : 'password'}
                 placeholder='Password'
