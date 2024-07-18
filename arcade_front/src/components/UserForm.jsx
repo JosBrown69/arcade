@@ -4,18 +4,32 @@ import { login, registrar } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 import { AuthContext } from '../context/AuthContext';
+import { GoodButton } from './Buttons';
+import {
+    Input,
+    Stack,
+    Radio,
+    RadioGroup,
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+} from '@chakra-ui/react';
+import { PasswordInput } from './PasswordInput';
+import '../styles/UserForm.css';
 
 export function UserForm({ route }) {
     const {
         register,
-        handleSubmit, 
+        handleSubmit,
         formState: { errors },
     } = useForm();
 
     const { obtenerUser } = useContext(AuthContext);
 
-    const [message, setMessage] = useState('')
-    const [logMessage, setLogMessage] = useState('')
+    const [message, setMessage] = useState('');
+    const [logMessage, setLogMessage] = useState('');
+    const [gender, setGender] = useState('');
 
     const navigate = useNavigate();
 
@@ -25,12 +39,15 @@ export function UserForm({ route }) {
                 const res = await login(data);
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-                obtenerUser()
-                navigate('/')
-                location.reload()
+                obtenerUser();
+                navigate('/');
+                location.reload();
             } catch (errors) {
-                if((errors.response.data.detail) === 'No active account found with the given credentials'){
-                    setLogMessage('Incorrect User or Password')
+                if (
+                    errors.response.data.detail ===
+                    'No active account found with the given credentials'
+                ) {
+                    setLogMessage('Incorrect User or Password');
                 }
             }
         } else if (route === 'register') {
@@ -53,56 +70,75 @@ export function UserForm({ route }) {
 
     return (
         <div className='form-body'>
-            {route === 'login' ? <h2 className='title'>Login</h2> : <h2 className='title'>Register</h2>}
+            {route === 'login' ? (
+                <h1 className='title'>Login</h1>
+            ) : (
+                <h1 className='title'>Register</h1>
+            )}
             <form onSubmit={onSubmit}>
-                <input
-                    type='text'
-                    id='username'
-                    name='username'
-                    placeholder='Username'
-                    {...register('username', { required: true })}
-                />
-                {errors.username && <span>Title is required</span>}
-                {route === 'register' && (
-                    <div className='radio-group'>
-                        <section className='radio-option'>
-                        <input
-                            className=''
-                            type='radio'
-                            value='male'
-                            {...register('gender', { required: true })}
-                        />
-                        <label htmlFor='male'>Male</label>
-                        </section>
-                        <section className='radio-option'>
-                        <input
-                            type='radio'
-                            value='female'
-                            {...register('gender', { required: true })}
-                        />
-                        <label htmlFor='female'>Female</label>
-                        </section>
-                        <section className='radio-option'>
-                        <input
-                            type='radio'
-                            value='philipino'
-                            {...register('gender', { required: true })}
-                        />
-                        <label htmlFor='philipino'>Philipino</label>
-                        </section>
-                        {errors.gender && <span>Gender is required</span>}
-                    </div>
-                )}
-                <input
-                    type='password'
-                    id='password'
-                    name='password'
-                    placeholder='Password'
-                    {...register('password', { required: true })}
-                />
-                {errors.password && <span>Password is required</span>}
-                {route === 'login' ? <button>Login</button> : <button>Register</button>}
-                {route === 'login' ? <h2>{logMessage}</h2> : <h2>{message}</h2>}
+                <Stack spacing={10}>
+                    <Input
+                        variant='flushed'
+                        size='md'
+                        id='username'
+                        name='username'
+                        placeholder='Username'
+                        {...register('username', { required: true })}
+                    />
+                    {errors.username && (
+                        <Alert status='error' variant='solid' borderRadius='md'>
+                            <AlertIcon />
+                            <AlertTitle>User is required</AlertTitle>
+                        </Alert>
+                    )}
+                    {route === 'register' && (
+                        <RadioGroup onChange={setGender} value={gender}>
+                            <h2 className='gender'>Gender</h2>
+                            <Stack direction='column'>
+                                <Radio
+                                    colorScheme='yellow'
+                                    size='md'
+                                    value='Male'
+                                >
+                                    Male
+                                </Radio>
+                                <Radio
+                                    colorScheme='yellow'
+                                    size='md'
+                                    value='Female'
+                                >
+                                    Female
+                                </Radio>
+                                <Radio
+                                    colorScheme='yellow'
+                                    size='md'
+                                    value='Filipino'
+                                >
+                                    Filipino
+                                </Radio>
+                            </Stack>
+                        </RadioGroup>
+                    )}
+                    <PasswordInput
+                        {...register('password', { required: true })}
+                    />
+                    {errors.password && (
+                        <Alert status='error' variant='solid' borderRadius='md'>
+                            <AlertIcon />
+                            <AlertTitle>Password is required!</AlertTitle>
+                        </Alert>
+                    )}
+                    {route === 'login' ? (
+                        <GoodButton>Login</GoodButton>
+                    ) : (
+                        <GoodButton>Register</GoodButton>
+                    )}
+                    {route === 'login' ? (
+                        <h2>{logMessage}</h2>
+                    ) : (
+                        <h2>{message}</h2>
+                    )}
+                </Stack>
             </form>
         </div>
     );

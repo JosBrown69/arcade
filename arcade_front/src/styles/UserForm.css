@@ -1,0 +1,16 @@
+.form-body {
+    margin: 2rem auto;
+    max-width: 50%;
+}
+
+.title {
+    font-size: 2rem;
+    padding: 1rem 0;
+    font-weight: bold;
+}
+
+.gender {
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    font-weight: bold;
+}

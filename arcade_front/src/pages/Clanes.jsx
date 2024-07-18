@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { ClanContext } from '../context/ClanContext';
 import { Spinner } from '@chakra-ui/react';
+import { GoodButton } from '../components/Buttons';
 
 export function Clanes() {
     const { clanes, getClans } = useContext(ClanContext);
@@ -14,9 +15,9 @@ export function Clanes() {
     return (
         <main>
             <h1>Clanes</h1>
-            <button onClick={() => navigate('/clan/create/')}>
-                Create Clan
-            </button>
+            <div onClick={() => navigate('/clan/create/')}>
+                <GoodButton>Create Clan</GoodButton>
+            </div>
             {clanes ? (
                 clanes.map((clan) => (
                     <div
