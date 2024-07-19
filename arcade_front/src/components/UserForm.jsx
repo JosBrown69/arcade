@@ -13,7 +13,6 @@ import {
     Alert,
     AlertIcon,
     AlertTitle,
-    AlertDescription,
 } from '@chakra-ui/react';
 import { PasswordInput } from './PasswordInput';
 import '../styles/UserForm.css';
@@ -119,9 +118,7 @@ export function UserForm({ route }) {
                             </Stack>
                         </RadioGroup>
                     )}
-                    <PasswordInput id='password' name='password'
-                        {...register('password', { required: true })}
-                    />
+                    <PasswordInput register={register} errors={errors} />
                     {errors.password && (
                         <Alert status='error' variant='solid' borderRadius='md'>
                             <AlertIcon />
@@ -133,10 +130,17 @@ export function UserForm({ route }) {
                     ) : (
                         <GoodButton>Register</GoodButton>
                     )}
-                    {route === 'login' ? (
-                        <h2>{logMessage}</h2>
-                    ) : (
-                        <h2>{message}</h2>
+                    {route === 'login' && logMessage && (
+                        <Alert status='error' variant='solid' borderRadius='md'>
+                            <AlertIcon />
+                            <AlertTitle>{logMessage}</AlertTitle>
+                        </Alert>
+                    )}
+                    {route === 'register' && message && (
+                        <Alert status='error' variant='solid' borderRadius='md'>
+                        <AlertIcon />
+                        <AlertTitle>{message}</AlertTitle>
+                    </Alert>
                     )}
                 </Stack>
             </form>
