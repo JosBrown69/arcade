@@ -3,6 +3,8 @@ import { following } from '../api/api';
 import { AuthContext } from '../context/AuthContext';
 import { FollowingList } from '../components/FollowingList';
 import { Spinner } from '@chakra-ui/react';
+import { List } from '@chakra-ui/react';
+import '../styles/Following.css';
 
 export function Following() {
     const [followers, setFollowing] = useState();
@@ -18,16 +20,18 @@ export function Following() {
     }, []);
 
     return (
-        <div>
-            <h1>Following</h1>
+        <section id='following-container'>
+            <h1 id='follow-title'>Following</h1>
             {user && followers ? (
                 <div>
                     {followers.map((follower) => (
-                        <FollowingList
-                            key={follower.id}
-                            follower={follower}
-                            user={user}
-                        />
+                        <List spacing={6}>
+                            <FollowingList
+                                key={follower.id}
+                                follower={follower}
+                                user={user}
+                            />
+                        </List>
                     ))}
                     <div>
                         {followers.length < 1 && (
@@ -36,8 +40,8 @@ export function Following() {
                     </div>
                 </div>
             ) : (
-                <>
-                    <div>Loading...</div>
+                <section className='Loading'>
+                    <div className='loading-text'>Loading...</div>
                     <Spinner
                         size='xl'
                         speed='0.5s'
@@ -45,8 +49,8 @@ export function Following() {
                         thickness='3px'
                         color='yellow.500'
                     />
-                </>
+                </section>
             )}
-        </div>
+        </section>
     );
 }

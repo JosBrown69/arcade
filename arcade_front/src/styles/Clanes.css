@@ -1,0 +1,33 @@
+#clanes-container {
+    max-width: 70%;
+    text-align: left;
+    padding: 0.5rem;
+    margin: 3rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#clanes-title {
+    font-size: 2rem;
+    color: #fca311;
+    margin: 2rem 0;
+}
+
+.clan-name {
+    margin: 10px;
+}
+
+.strong {
+    padding: 10px;
+}
+
+.founder:hover {
+    color: #fca311;
+}
+
+.card-body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    margin-right: 10px;
+}

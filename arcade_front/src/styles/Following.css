@@ -1,0 +1,36 @@
+#following-container {
+    max-width: 70%;
+    text-align: left;
+    padding: 0.5rem;
+    margin: 3rem auto 0 auto;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#follow-title {
+    font-size: 2rem;
+    color: #fca311;
+    margin: 2rem 0;
+}
+
+.clan-name {
+    font-size: 1.3rem;
+}
+
+.Loading {
+    margin-top: 3rem;
+}
+
+.loading-text {
+    margin-bottom: 1rem;
+}
+
+.following-name {
+    padding: 1rem;
+}
+
+.following-name:hover {
+    color: #fca311;
+}
+

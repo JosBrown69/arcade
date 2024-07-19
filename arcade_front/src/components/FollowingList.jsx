@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { ListItem, Avatar } from '@chakra-ui/react';
+import '../styles/Following.css'
 
 export function FollowingList({ follower, user }) {
     const navigate = useNavigate();
@@ -8,12 +10,14 @@ export function FollowingList({ follower, user }) {
     const followingId = follower.siguiendo.id;
 
     return (
-        <div>
-            {follow === user.id && (
-                <p onClick={() => navigate(`/user/${followingId}`)}>
-                    {following}
-                </p>
-            )}
+        <div className='following-list'>
+            <ListItem onClick={() => navigate(`/user/${followingId}`)}>
+                <Avatar
+                    bg='brand.50'
+                    boxSize={6}
+                />
+                <span className='following-name'>{following}</span>
+            </ListItem>
         </div>
     );
 }
