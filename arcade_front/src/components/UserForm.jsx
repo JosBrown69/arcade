@@ -91,32 +91,37 @@ export function UserForm({ route }) {
                         </Alert>
                     )}
                     {route === 'register' && (
-                        <RadioGroup onChange={setGender} value={gender}>
-                            <h2 className='gender'>Gender</h2>
-                            <Stack direction='column'>
-                                <Radio
-                                    colorScheme='yellow'
-                                    size='md'
-                                    value='Male'
-                                >
-                                    Male
-                                </Radio>
-                                <Radio
-                                    colorScheme='yellow'
-                                    size='md'
-                                    value='Female'
-                                >
-                                    Female
-                                </Radio>
-                                <Radio
-                                    colorScheme='yellow'
-                                    size='md'
-                                    value='Filipino'
-                                >
-                                    Filipino
-                                </Radio>
-                            </Stack>
-                        </RadioGroup>
+                        <>
+                            <RadioGroup onChange={setGender} value={gender}>
+                                <h2 className='gender'>Gender</h2>
+                                <Stack direction='column'>
+                                    <Radio
+                                        {...register('gender', { required: true })}
+                                        colorScheme='yellow'
+                                        size='md'
+                                        value='Male'
+                                    >
+                                        Male
+                                    </Radio>
+                                    <Radio
+                                        {...register('gender', { required: true })}
+                                        colorScheme='yellow'
+                                        size='md'
+                                        value='Female'
+                                    >
+                                        Female
+                                    </Radio>
+                                    <Radio
+                                        {...register('gender', { required: true })}
+                                        colorScheme='yellow'
+                                        size='md'
+                                        value='Filipino'
+                                    >
+                                        Filipino
+                                    </Radio>
+                                </Stack>
+                            </RadioGroup>
+                        </>
                     )}
                     <PasswordInput register={register} errors={errors} />
                     {errors.password && (
@@ -138,9 +143,9 @@ export function UserForm({ route }) {
                     )}
                     {route === 'register' && message && (
                         <Alert status='error' variant='solid' borderRadius='md'>
-                        <AlertIcon />
-                        <AlertTitle>{message}</AlertTitle>
-                    </Alert>
+                            <AlertIcon />
+                            <AlertTitle>{message}</AlertTitle>
+                        </Alert>
                     )}
                 </Stack>
             </form>

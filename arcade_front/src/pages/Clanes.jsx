@@ -31,16 +31,20 @@ export function Clanes() {
                             maxW='md'
                             maxH='sm'
                             key={clan.id}
-                            onClick={() => {
-                                navigate(`/clan/${clan.id}`);
-                            }}
                         >
-                            <CardHeader className='clan-name'>
+                            <CardHeader
+                                className='clan-name'
+                                onClick={() => {
+                                    navigate(`/clan/${clan.id}`);
+                                }}
+                            >
                                 {clan.title}
                             </CardHeader>
                             <CardBody fontSize='sm' className='card-body'>
                                 <strong className='strong'>Founder:</strong>
-                                <span className='founder'>{clan.creator.username}</span>
+                                <span className='founder'>
+                                    {clan.creator.username}
+                                </span>
                                 <strong className='strong'>members:</strong>
                                 {clan.member.length}
                             </CardBody>

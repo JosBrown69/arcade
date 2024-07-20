@@ -21,6 +21,7 @@ import { Chat } from './pages/Chat';
 
 function Logout() {
     localStorage.clear();
+    location.reload()
     return <Navigate to='/login' />;
 }
 
