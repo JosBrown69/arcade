@@ -9,7 +9,10 @@ export function FollowingList({ follower, user }) {
     const following = follower.siguiendo.username;
     const followingId = follower.siguiendo.id;
 
+    console.log(follower);
+
     return (
+        <>
         <div className='following-list'>
             <ListItem onClick={() => navigate(`/user/${followingId}`)}>
                 <Avatar
@@ -19,5 +22,6 @@ export function FollowingList({ follower, user }) {
                 <span className='following-name'>{following}</span>
             </ListItem>
         </div>
+        </>
     );
 }

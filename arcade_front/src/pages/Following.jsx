@@ -19,12 +19,14 @@ export function Following() {
         getFollowing();
     }, []);
 
+    const iFollow = followers?.filter((follower) => follower.seguidor.id === user.id ) || null
+
     return (
         <section id='following-container'>
             <h1 id='follow-title'>Following</h1>
-            {user && followers ? (
+            {user && iFollow ? (
                 <div>
-                    {followers.map((follower) => (
+                    {iFollow.map((follower) => (
                         <List spacing={6}>
                             <FollowingList
                                 key={follower.id}
@@ -34,7 +36,7 @@ export function Following() {
                         </List>
                     ))}
                     <div>
-                        {followers.length < 1 && (
+                        {iFollow.length < 1 && (
                             <h2>Start following people to see them here!</h2>
                         )}
                     </div>
