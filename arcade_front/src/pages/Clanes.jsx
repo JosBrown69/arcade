@@ -22,17 +22,20 @@ export function Clanes() {
                     <GoodButton>Create Clan</GoodButton>
                 </div>
             </section>
-            <Stack>
+            <Stack spacing={6}>
                 {clanes ? (
                     clanes.map((clan) => (
                         <Card
-                            direction={{ sm: 'row' }}
-                            variant='unstyled'
-                            maxW='md'
-                            maxH='sm'
+                            align='start'
+                            variant='elevated'
+                            size='sm'
+                            color='brand.300'
+                            bg='brand.400'
                             key={clan.id}
                         >
                             <CardHeader
+                                color='brand.50'
+                                fontWeight='bold'
                                 className='clan-name'
                                 onClick={() => {
                                     navigate(`/clan/${clan.id}`);
@@ -40,7 +43,12 @@ export function Clanes() {
                             >
                                 {clan.title}
                             </CardHeader>
-                            <CardBody fontSize='sm' className='card-body'>
+                            <CardBody
+                                fontSize='sm'
+                                className='card-body'
+                                justify='space-between'
+                                flexWrap='wrap'
+                            >
                                 <strong className='strong'>Founder:</strong>
                                 <span className='founder'>
                                     {clan.creator.username}
