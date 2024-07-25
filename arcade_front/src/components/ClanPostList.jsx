@@ -1,33 +1,40 @@
 import { useNavigate } from 'react-router-dom';
+import { Avatar, Flex } from '@chakra-ui/react';
 
 export function ClanPostList({ clan, post, user }) {
     const navigate = useNavigate();
 
-    if (post) {
-        return (
-            <div>
-                <div key={post.id}>
-                    {clan.id === post.clan.id && (
-                        <div>
-                            {user.id === post.person.id ? (
-                                <h3 onClick={() => navigate(`/profile/`)}>
-                                    {post.person.username}
-                                </h3>
-                            ) : (
+    return (
+        <section key={post.id} className='post-box'>
+            {clan.id === post.clan.id && (
+                <div className='post-text'>
+                    <section className='comment-user'>
+                        <Avatar bg='brand.50' boxSize={6} />
+                        {user.id === post.person.id ? (
+                            <>
                                 <h3
-                                    onClick={() =>
-                                        navigate(`/user/${post.person.id}`)
-                                    }
+                                    className='comment-name'
+                                    onClick={() => navigate(`/profile/`)}
                                 >
                                     {post.person.username}
                                 </h3>
-                            )}
-                            <p>{post.content}</p>
-                        </div>
-                    )}
+                            </>
+                        ) : (
+                            <h3
+                                className='comment-name'
+                                onClick={() =>
+                                    navigate(`/user/${post.person.id}`)
+                                }
+                            >
+                                {post.person.username}
+                            </h3>
+                        )}
+                    </section>
+                    <section>
+                        <p>{post.content}</p>
+                    </section>
                 </div>
-            </div>
-        );
-    }
+            )}
+        </section>
+    );
 }
-

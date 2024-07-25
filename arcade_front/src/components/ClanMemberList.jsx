@@ -4,14 +4,14 @@ export function ClanMemberList({ user, usuario }) {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <>
             {user.id === usuario.id ? (
-                <p onClick={() => navigate(`/profile/`)}>{usuario.username}</p>
+                <li onClick={() => navigate(`/profile/`)}>{usuario.username}</li>
             ) : (
-                <p onClick={() => navigate(`/user/${usuario.id}/`)}>
+                <li onClick={() => navigate(`/user/${usuario.id}/`)}>
                     {usuario.username}
-                </p>
+                </li>
             )}
-        </div>
+        </>
     );
 }

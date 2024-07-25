@@ -1,0 +1,86 @@
+#clan-container {
+    max-width: 70%;
+    text-align: left;
+    padding: 0.5rem;
+    margin: 3rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#clan-header {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#clan-title {
+    font-size: 2rem;
+    color: #fca311;
+    margin: 2rem 0 0.5rem 0;
+}
+
+.members-title {
+    font-size: 1.5rem;
+    color: #fca311;
+    margin: 2rem 0 0.5rem 0;
+}
+
+.social-title {
+    font-size: 1.5rem;
+    color: #fca311;
+    margin: 2rem 0 0.5rem 0;
+}
+
+.creator {
+    margin: 1rem 0;
+}
+
+.botton {
+    margin: 2rem 0 0.5rem auto;
+    align-items: flex-end;
+}
+
+.clan-creator:hover {
+    color: #fca311;
+}
+
+.post-box {
+    margin: 1rem;
+    background-color: #939292;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.post-text{
+    padding: 6px;
+}
+
+.comment-user {
+    display: flex;
+    margin: 0 2rem 0 0;
+    flex-direction: row;
+    padding: 3px;
+}
+
+.comment-name {
+    padding-left: 3px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.no-posts{
+    max-width: fit-content;
+    margin: 7rem auto;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+i {
+    padding: 10px;
+}
+
+@media(max-width: 700px){
+    .no-posts{
+        font-size: 1.3rem;
+    }
+}

@@ -7,7 +7,8 @@ import { ClanJoin } from '../components/ClanJoin';
 import { ClanPostList } from '../components/ClanPostList';
 import { useNavigate } from 'react-router-dom';
 import { ClanMemberList } from '../components/ClanMemberList';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Divider, Flex, Box } from '@chakra-ui/react';
+import '../styles/Clan.css';
 
 export function Clan() {
     const params = useParams();
@@ -43,55 +44,92 @@ export function Clan() {
         obtenerMiembros();
     }, []);
 
+    const localPosts = posts?.find((post) => post.clan.id === clan.id) || null;
+
     return (
-        <main>
+        <main id='clan-container'>
             {clan && posts && members ? (
                 <div>
-                    <h1>{clan.title}</h1>
-                    {clan.creator.id === user.id ? (
-                        <p onClick={() => navigate(`/profile/`)}>
-                            Founder {clan.creator.username}
-                        </p>
-                    ) : (
-                        <p onClick={() => navigate(`/user/${clan.creator.id}`)}>
-                            Founder {clan.creator.username}
-                        </p>
-                    )}
-                    {clan.creator.id != user.id && (
-                        <ClanJoin
-                            clan={clan}
-                            user={user}
-                            members={members}
-                            update={obtenerClan}
-                            update2={obtenerMiembros}
-                        />
-                    )}
-                    <h2>Members</h2>
-                    {clan.member && clan.member.length > 0 ? (
-                        <ul>
-                            {clan.member.map((usuario) => (
-                                <ClanMemberList
-                                    key={usuario.id}
-                                    usuario={usuario}
+                    <section id='clan-header'>
+                        <h1 id='clan-title'>{clan.title}</h1>
+                        {clan.creator.id != user.id && (
+                            <span className='botton'>
+                                <ClanJoin
+                                    clan={clan}
                                     user={user}
+                                    members={members}
+                                    update={obtenerClan}
+                                    update2={obtenerMiembros}
                                 />
-                            ))}
-                        </ul>
-                    ) : (
-                        <div>
-                            <p>No members yet</p>
-                        </div>
-                    )}
+                            </span>
+                        )}
+                    </section>
+                    <section className='creator'>
+                        {clan.creator.id === user.id ? (
+                            <p onClick={() => navigate(`/profile/`)}>
+                                <strong>Founder </strong>
+                                <span className='clan-creator'>
+                                    {clan.creator.username}
+                                </span>
+                            </p>
+                        ) : (
+                            <p
+                                onClick={() =>
+                                    navigate(`/user/${clan.creator.id}`)
+                                }
+                            >
+                                <strong>Founder</strong>{' '}
+                                <span className='clan-creator'>
+                                    {clan.creator.username}
+                                </span>
+                            </p>
+                        )}
+                        <i>{clan.description}</i>
+                    </section>
+                    <Divider />
+                    <h2 className='members-title'>Members</h2>
+                    <Flex overflow='scroll' h='100px' marginBottom='1rem'>
+                        {clan.member && clan.member.length > 0 ? (
+                            <ul>
+                                {clan.member.map((usuario) => (
+                                    <ClanMemberList
+                                        key={usuario.id}
+                                        usuario={usuario}
+                                        user={user}
+                                    />
+                                ))}
+                            </ul>
+                        ) : (
+                            <div>
+                                <p>No members yet</p>
+                            </div>
+                        )}
+                    </Flex>
                     <section>
-                        {posts.map((post) => (
-                            <ClanPostList
-                                clan={clan}
-                                user={user}
-                                post={post}
-                                key={post.id}
-                            />
-                        ))}
-                        <div>{posts.length < 1 && <h3>No posts yet</h3>}</div>
+                        <h2 className='social-title'>Social</h2>
+                        <Box
+                            marginBottom='2rem'
+                            overflow='scroll'
+                            h='300px'
+                            border='1px'
+                            borderColor='brand.300'
+                            borderRadius='10px'
+                        >
+                            <>
+                                {localPosts ? (
+                                    posts.map((post) => (
+                                        <ClanPostList
+                                            clan={clan}
+                                            user={user}
+                                            post={post}
+                                            key={post.id}
+                                        />
+                                    ))
+                                ) : (
+                                    <p className='no-posts'>No interactions yet!</p>
+                                )}
+                            </>
+                        </Box>
                     </section>
                     <ClanPostForm
                         clan={clan}

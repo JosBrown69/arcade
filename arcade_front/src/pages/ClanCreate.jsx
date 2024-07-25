@@ -3,7 +3,17 @@ import { useForm } from 'react-hook-form';
 import { clanCreate, joinClan } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { ClanContext } from '../context/ClanContext';
-import { Spinner } from '@chakra-ui/react';
+import { GoodButton } from '../components/Buttons';
+import '../styles/Create.css';
+import {
+    Spinner,
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    Stack,
+    Input,
+    Textarea,
+} from '@chakra-ui/react';
 
 export function ClanCreate() {
     const {
@@ -31,29 +41,62 @@ export function ClanCreate() {
     });
 
     return (
-        <main>
+        <main id='create-body'>
             {clanes ? (
                 <section>
                     <header>
-                        <h1>Create a Clan</h1>
-                        <p>Share tips, tricks, hacks and share with friends</p>
+                        <h1 className='create-title'>Create a Clan</h1>
+                        <p className='create-text'>
+                            Share tips, tricks and hacks with friends!
+                        </p>
                     </header>
                     <section>
                         <form onSubmit={onSubmit}>
-                            <input
-                                type='text'
-                                placeholder='Name your Clan'
-                                {...register('title', { required: true })}
-                            />
-                            {errors.title && <span>Title is required</span>}
-                            <textarea
-                                placeholder='Writte a small description'
-                                {...register('description', { required: true })}
-                            />
-                            {errors.description && (
-                                <span>Description is required</span>
-                            )}
-                            <button>Create</button>
+                            <Stack spacing={10}>
+                                <Input
+                                    variant='flushed'
+                                    size='md'
+                                    id='name'
+                                    name='title'
+                                    placeholder='Clan name'
+                                    {...register('title', { required: true })}
+                                />
+                                {errors.name && (
+                                    <Alert
+                                        status='error'
+                                        variant='solid'
+                                        borderRadius='md'
+                                    >
+                                        <AlertIcon />
+                                        <AlertTitle>
+                                            Name is required
+                                        </AlertTitle>
+                                    </Alert>
+                                )}
+                                <Textarea
+                                    variant='flushed'
+                                    type='text'
+                                    id='content'
+                                    name='content'
+                                    placeholder='Writte a small description'
+                                    {...register('description', {
+                                        required: true,
+                                    })}
+                                />
+                                {errors.description && (
+                                    <Alert
+                                        status='error'
+                                        variant='solid'
+                                        borderRadius='md'
+                                    >
+                                        <AlertIcon />
+                                        <AlertTitle>
+                                            Descriptions is required
+                                        </AlertTitle>
+                                    </Alert>
+                                )}
+                                <GoodButton>Create</GoodButton>
+                            </Stack>
                         </form>
                     </section>
                 </section>

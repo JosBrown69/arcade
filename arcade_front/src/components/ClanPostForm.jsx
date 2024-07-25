@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { createPosts } from '../api/api';
+import { GoodButton } from './Buttons';
+import { Textarea, Box } from '@chakra-ui/react';
 
 export function ClanPostForm({ clan, user, obtener }) {
     const params = useParams();
@@ -23,20 +25,26 @@ export function ClanPostForm({ clan, user, obtener }) {
     return (
         <main>
             {clan && matchingMember && (
-                <section>
+                <Box>
                     <form onSubmit={onSubmit}>
-                        <textarea
+                        <Textarea
+                            variant='flushed'
                             type='text'
                             id='content'
                             name='content'
+                            padding='0.5rem'
+                            maxWidth='100%'
+                            color='brand.300'
+                            marginBottom='2rem'
+                            marginTop='2rem'
                             placeholder='Writte something... ;*'
                             {...register('content', {
                                 required: true,
                             })}
                         />
-                        <button>Post</button>
+                        <GoodButton>Post</GoodButton>
                     </form>
-                </section>
+                </Box>
             )}
         </main>
     );
