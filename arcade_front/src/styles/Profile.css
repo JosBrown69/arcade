@@ -1,0 +1,42 @@
+#profile-container {
+    max-width: 70%;
+    text-align: left;
+    padding: 0.5rem;
+    margin: 3rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-title {
+    margin: 2rem 0 1rem 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.username {
+    padding: 3px;
+    margin-left: 1rem;
+}
+
+.following-box {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.following-box p strong {
+    padding: 3px;
+}
+
+.titles {
+    font-size: 1.5rem;
+    color: #fca311;
+    margin: 2rem 0 0.5rem 0;
+}
+
+@media(max-width: 800px){
+    .following-box {
+        width: 100%;
+    }
+}

@@ -87,7 +87,7 @@ export function Clan() {
                         <i>{clan.description}</i>
                     </section>
                     <Divider />
-                    <h2 className='members-title'>Members</h2>
+                    <h2 className='titles'>Members</h2>
                     <Flex overflow='scroll' h='100px' marginBottom='1rem'>
                         {clan.member && clan.member.length > 0 ? (
                             <ul>
@@ -106,7 +106,7 @@ export function Clan() {
                         )}
                     </Flex>
                     <section>
-                        <h2 className='social-title'>Social</h2>
+                        <h2 className='titles'>Social</h2>
                         <Box
                             marginBottom='2rem'
                             overflow='scroll'

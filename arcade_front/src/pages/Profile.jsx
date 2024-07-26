@@ -6,7 +6,8 @@ import { UserClanes } from '../components/UserClanes';
 import { UserTrophies } from '../components/UserTrophies';
 import { FollowCount } from '../components/FollowCount';
 import { following } from '../api/api';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Avatar, Heading } from '@chakra-ui/react';
+import '../styles/Profile.css';
 
 export function Profile() {
     const { user, obtenerUser } = useContext(AuthContext);
@@ -26,34 +27,43 @@ export function Profile() {
         getFollowing();
     }, []);
 
+    const userGender =
+        user.gender === 'Male'
+            ? '#4982ff'
+            : user.gender === 'Female'
+            ? '#e752ae'
+            : 'Filipino';
+
     return (
-        <div>
+        <div id='profile-container'>
             {user && followers && clanes ? (
                 <div>
-                    <h1>
-                        <span>
-                            <svg
-                                xmlns='http://www.w3.org/2000/svg'
-                                width='80'
-                                height='80'
-                                fill='currentColor'
-                                className='bi bi-person-square'
-                                viewBox='0 0 16 16'
+                    {userGender != 'Filipino' ? (
+                        <div className={`profile-title`}>
+                            <Avatar boxSize={75} bg={userGender} />
+                            <Heading color={userGender}>
+                                {user.username}
+                            </Heading>
+                        </div>
+                    ) : (
+                        <div className={`profile-title`}>
+                            <Avatar boxSize={75} bgColor='#0039B3' />
+                            <Heading
+                                color='#DC0505'
+                                fontSize='6xl'
+                                marginLeft='1rem'
                             >
-                                <path d='M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0' />
-                                <path d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z' />
-                            </svg>
-                        </span>
-                        {user.username}
-                    </h1>
-                    <span>({user.gender})</span>
+                                {user.username}
+                            </Heading>
+                        </div>
+                    )}
                     <FollowCount user={user} follows={followers} />
                     <div>
-                        <h2>Clanes</h2>
+                        <h2 className='titles'>Clanes</h2>
                         <UserClanes user={user} clanes={clanes} />
                     </div>
                     <div>
-                        <h2>Trophies</h2>
+                        <h2 className='titles'>Trophies</h2>
                         <UserTrophies user={user} trophies={trophies} />
                     </div>
                 </div>
@@ -72,3 +82,4 @@ export function Profile() {
         </div>
     );
 }
+

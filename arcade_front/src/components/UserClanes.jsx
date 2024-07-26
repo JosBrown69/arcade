@@ -1,16 +1,13 @@
 import { ClanesList } from './ClanesList';
+import { Box } from '@chakra-ui/react';
 
 export function UserClanes({ user, clanes }) {
-
     return (
-        <div>
-            {clanes.length > 0 ? (
+        <Box marginBottom='2rem' overflow='scroll' h='150px'>
+            {clanes.length > 0 &&
                 clanes.map((clan) => (
                     <ClanesList key={clan.id} user={user} clan={clan} />
-                ))
-            ) : (
-                <div>Loading clanes...</div>
-            )}
-        </div>
+                ))}
+        </Box>
     );
 }

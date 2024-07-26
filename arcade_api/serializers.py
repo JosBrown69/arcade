@@ -32,7 +32,7 @@ class TrophieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trophie
         fields = '__all__'
-        depth = 1
+        depth = 2
         extra_kwargs = {'achiever':{'read_only':True}}
 
 class AchieverSerializer(serializers.ModelSerializer):

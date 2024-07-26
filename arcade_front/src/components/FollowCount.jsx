@@ -5,9 +5,9 @@ export function FollowCount({ user, follows }) {
     return (
         <div>
             {user && follows && (
-                <section>
-                    <p>Following {user.following.length}</p>
-                    <p>Followers {followers.length}</p>
+                <section className="following-box">
+                    <p><strong>Following</strong> {user.following.length}</p>
+                    <p><strong>Followers</strong> {followers.length}</p>
                 </section>
             )}
         </div>

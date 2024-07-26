@@ -19,13 +19,7 @@
     margin: 2rem 0 0.5rem 0;
 }
 
-.members-title {
-    font-size: 1.5rem;
-    color: #fca311;
-    margin: 2rem 0 0.5rem 0;
-}
-
-.social-title {
+.titles {
     font-size: 1.5rem;
     color: #fca311;
     margin: 2rem 0 0.5rem 0;
@@ -48,6 +42,7 @@
     margin: 1rem;
     background-color: #939292;
     width: fit-content;
+    max-width: 90%;
     border-radius: 5px;
 }
 
@@ -79,8 +74,11 @@ i {
     padding: 10px;
 }
 
-@media(max-width: 700px){
+@media(max-width: 800px){
     .no-posts{
         font-size: 1.3rem;
+    }
+    .post-box {
+        margin: 1rem 0.5rem;
     }
 }
