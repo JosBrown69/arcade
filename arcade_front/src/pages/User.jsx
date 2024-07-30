@@ -86,11 +86,11 @@ export function User() {
                         />
                     </section>
                     <FollowCount follows={followers} user={usuario} />
-                    <div>
+                    <div className='clanes-width'>
                         <h2 className='titles'>Clanes</h2>
                         <UserClanes user={usuario} clanes={clanes} />
                     </div>
-                    <div>
+                    <div className='width'>
                         <h2 className='titles'>Trophies</h2>
                         <UserTrophies user={usuario} trophies={trophies} />
                     </div>

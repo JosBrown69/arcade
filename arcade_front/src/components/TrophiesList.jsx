@@ -7,7 +7,7 @@ export function TrophiesList({ user, trophie }) {
     const ganadores = trophie.achiever;
 
     return (
-        <div>
+        <div className='trophie'>
             {ganadores.map((ganador) => (
                 <div
                     key={ganador.id}

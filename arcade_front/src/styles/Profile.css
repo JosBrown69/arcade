@@ -24,6 +24,10 @@
     padding: 3px;
 }
 
+.clanes-width, .trophies-width {
+    max-width: 60%;
+}
+
 .titles {
     font-size: 1.5rem;
     color: #fca311;
@@ -33,5 +37,11 @@
 @media(max-width: 800px){
     .following-box {
         width: 100%;
+    }
+    .trophies-width, .clanes-width{
+        max-width: 100%;
+    }
+    #profile-container{
+        margin: 1rem auto 0 auto;
     }
 }

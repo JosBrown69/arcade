@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Box } from '@chakra-ui/react';
 
 export function ClanesList({ user, clan }) {
     const navigate = useNavigate();
@@ -6,7 +7,7 @@ export function ClanesList({ user, clan }) {
     const miembros = clan.member;
 
     return (
-        <div>
+        <Box marginBottom='0.9rem'>
             {miembros.map((miembro) => (
                 <div
                     key={miembro.id}
@@ -19,6 +20,6 @@ export function ClanesList({ user, clan }) {
                     ) : null}
                 </div>
             ))}
-        </div>
+        </Box>
     );
 }

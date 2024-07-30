@@ -1,0 +1,24 @@
+#trophies-container {
+    max-width: 70%;
+    text-align: left;
+    padding: 0.5rem;
+    margin: 3rem auto 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.trophies {
+    max-width: 60%;
+}
+
+.titles {
+    font-size: 1.5rem;
+    color: #fca311;
+    margin: 2rem 0 0.5rem 0;
+}
+
+@media(max-width: 800px) {
+    .trophies {
+        max-width: 100%;
+    }
+}

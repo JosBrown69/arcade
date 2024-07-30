@@ -15,6 +15,7 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("api-auth/", include("rest_framework.urls")),
     path('game/<int:game_id>/', views.GetGameView.as_view(), name='game'),
+    path('games/', views.GetGamesView.as_view(), name='games'),
     path('trophies/', views.GetTrophieListView.as_view(), name='trophies'),
     path('trophie/<int:trophie_id>/', views.GetTrophieView.as_view(), name='trophie'),
     path('trophie/<int:trophie_id>/win_trophie/', views.AchieverView.as_view(), name='win'),

@@ -58,7 +58,7 @@ export function Profile() {
                         </div>
                     )}
                     <FollowCount user={user} follows={followers} />
-                    <div>
+                    <div className='clanes-width'>
                         <h2 className='titles'>Clanes</h2>
                         <UserClanes user={user} clanes={clanes} />
                     </div>

@@ -9,7 +9,7 @@ export function TrophieMiniatura({ trophie }) {
             : '#FFBF00';
 
     return (
-        <Box bg={metal} fontSize='xl' maxWidth='60%' borderRadius='10px' marginBottom='1rem'>
+        <Box bg={metal} fontSize='xl' maxWidth='100%' borderRadius='10px' marginBottom='1rem'>
             <Box padding='15px' display='flex' alignItems='center'>
                 <svg
                     xmlns='http://www.w3.org/2000/svg'
