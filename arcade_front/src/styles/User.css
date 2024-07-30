@@ -1,4 +1,4 @@
-#profile-container {
+#user-container {
     max-width: 70%;
     text-align: left;
     padding: 0.5rem;
@@ -7,21 +7,19 @@
     flex-direction: column;
 }
 
-.profile-title {
+.user-title {
     margin: 2rem 0 1rem 0;
     display: flex;
     align-items: flex-end;
-} 
-
-.following-box {
-    width: 30%;
-    display: flex; 
-    flex-direction: row;
-    justify-content: space-between;
 }
 
-.following-box p strong {
-    padding: 3px;
+.user-box {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    justify-content: space-between;
 }
 
 .titles {
@@ -30,8 +28,23 @@
     margin: 2rem 0 0.5rem 0;
 }
 
+.following-box {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.following-box p strong {
+    padding: 3px;
+}
+
 @media(max-width: 800px){
     .following-box {
         width: 100%;
+    }
+    .user-box{
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

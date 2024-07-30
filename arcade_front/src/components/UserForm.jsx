@@ -96,7 +96,9 @@ export function UserForm({ route }) {
                                 <h2 className='gender'>Gender</h2>
                                 <Stack direction='column'>
                                     <Radio
-                                        {...register('gender', { required: true })}
+                                        {...register('gender', {
+                                            required: true,
+                                        })}
                                         colorScheme='yellow'
                                         size='md'
                                         value='Male'
@@ -104,7 +106,9 @@ export function UserForm({ route }) {
                                         Male
                                     </Radio>
                                     <Radio
-                                        {...register('gender', { required: true })}
+                                        {...register('gender', {
+                                            required: true,
+                                        })}
                                         colorScheme='yellow'
                                         size='md'
                                         value='Female'
@@ -112,13 +116,27 @@ export function UserForm({ route }) {
                                         Female
                                     </Radio>
                                     <Radio
-                                        {...register('gender', { required: true })}
+                                        {...register('gender', {
+                                            required: true,
+                                        })}
                                         colorScheme='yellow'
                                         size='md'
                                         value='Filipino'
                                     >
                                         Filipino
                                     </Radio>
+                                    {errors.gender && (
+                                        <Alert
+                                            status='error'
+                                            variant='solid'
+                                            borderRadius='md'
+                                        >
+                                            <AlertIcon />
+                                            <AlertTitle>
+                                                Gender is required
+                                            </AlertTitle>
+                                        </Alert>
+                                    )}
                                 </Stack>
                             </RadioGroup>
                         </>

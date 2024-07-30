@@ -3,10 +3,6 @@ import { Box } from '@chakra-ui/react';
 
 export function UserTrophies({ user, trophies }) {
 
-    if (trophies) {
-        console.log(trophies);
-    }
-
     return (
         <Box
             marginBottom='2rem'

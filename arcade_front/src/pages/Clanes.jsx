@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { ClanContext } from '../context/ClanContext';
+import { AuthContext } from '../context/AuthContext';
 import { Spinner } from '@chakra-ui/react';
 import { GoodButton } from '../components/Buttons';
 import { Card, CardHeader, CardBody, Stack } from '@chakra-ui/react';
@@ -8,6 +9,7 @@ import '../styles/Clanes.css';
 
 export function Clanes() {
     const { clanes, getClans } = useContext(ClanContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -50,9 +52,29 @@ export function Clanes() {
                                 flexWrap='wrap'
                             >
                                 <strong className='strong'>Founder:</strong>
-                                <span className='founder'>
-                                    {clan.creator.username}
-                                </span>
+                                {clan.creator.username != user.username ? (
+                                    <span
+                                        className='founder'
+                                        onClick={() => {
+                                            navigate(
+                                                `/user/${clan.creator.id}`
+                                            );
+                                        }}
+                                    >
+                                        {clan.creator.username}
+                                    </span>
+                                ) : (
+                                    <span
+                                        className='founder'
+                                        onClick={() => {
+                                            navigate(
+                                                `/profile/`
+                                            );
+                                        }}
+                                    >
+                                        {clan.creator.username}
+                                    </span>
+                                )}
                                 <strong className='strong'>members:</strong>
                                 {clan.member.length}
                             </CardBody>

@@ -9,8 +9,6 @@ export function FollowingList({ follower, user }) {
     const following = follower.siguiendo.username;
     const followingId = follower.siguiendo.id;
 
-    console.log(follower);
-
     return (
         <>
         <div className='following-list'>
