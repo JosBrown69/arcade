@@ -9,7 +9,6 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Trophies } from './pages/Trophies';
 import { NotFound } from './pages/NotFound';
 import { Navigation } from './components/Navigation';
-import { Game } from './pages/Game';
 import { Home } from './pages/Home';
 import { Following } from './pages/Following';
 import { Clan } from './pages/Clan';
@@ -18,6 +17,7 @@ import { ClanCreate } from './pages/ClanCreate';
 import { Trophie } from './components/Trophie';
 import { User } from './pages/User';
 import { Chat } from './pages/Chat';
+import { MainGame } from './Games/PoliceChase/Game';
 
 function Logout() {
     localStorage.clear();
@@ -36,7 +36,7 @@ function App() {
                             <Route path='/home' element={<Home />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/logout' element={<Logout />} />
-                            <Route path='/game' element={<Game />} />
+                            <Route path='/game' element={<MainGame />} />
                             <Route path='/register' element={<Register />} />
                             <Route path='*' element={<NotFound />} />
                             <Route
