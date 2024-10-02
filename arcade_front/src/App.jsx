@@ -103,14 +103,6 @@ function App() {
                                     </ProtectedRoute>
                                 }
                             />
-                            <Route
-                                path='/chat/'
-                                element={
-                                    <ProtectedRoute>
-                                        <Chat />
-                                    </ProtectedRoute>
-                                }
-                            />
                         </Routes>
                     </TrophieContextProvider>
                 </ClanContextProvider>
