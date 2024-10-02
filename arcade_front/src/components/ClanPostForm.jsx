@@ -37,7 +37,7 @@ export function ClanPostForm({ clan, user, obtener }) {
                             color='brand.300'
                             marginBottom='2rem'
                             marginTop='2rem'
-                            placeholder='Writte something... ;*'
+                            placeholder='Writte something...'
                             {...register('content', {
                                 required: true,
                             })}

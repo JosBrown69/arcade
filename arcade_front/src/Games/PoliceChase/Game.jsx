@@ -47,7 +47,7 @@ export class Game {
         this.touchLeft.detectTouch();
         this.touchRight.detectTouch();
         if (playerImage) {
-            this.player = new Player({
+            this.player = new Player({ 
                 game: this,
                 imageSrc: playerImage,
                 obstacles: this.obstaclePool,

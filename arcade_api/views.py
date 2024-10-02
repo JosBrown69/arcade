@@ -120,30 +120,3 @@ class GetPostList(generics.ListAPIView):
     lookup_url_kwarg = 'clan_id'
 
 
-"""
-Metodos gerics
-
-class ProductListAPIView(generics.ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-class ProductDetailAPIView(generics.RetrieveAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    lookup_field = 'pk'
-
-class ProductCreateAPIView(generics.CreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-
-class ProductUpdateAPIView(generics.UpdateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    lookup_field = 'pk'
-
-class ProductDeleteAPIView(generics.DestroyAPIView):
-    queryset = Product.objects.all()
-    lookup_field = 'pk'
-
-"""
-
