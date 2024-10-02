@@ -82,4 +82,63 @@ Contains the first game available with or without login in.
 
 - **Game.jsx**: Contains the main game class, including the overall game structure, the MainGame component, the game loop, and the canvas rendering.
 
+- **Obstacles.jsx**: Defines obstacle class and behavior.
 
+- **Player.jsx**: Defines Player class controls and behavior.
+
+- **ScoreBoard.jsx**: Defines and draw the score board.
+
+- **TouchInput.jsx**: Touch controls for mobile compatibility.
+
+### Pages
+
+- **Clan.jsx**: contains all the clan interaction, members, posts with scrolldown, post textarea, join and leave buttons.
+
+- **ClanCreate.jsx**: Special form to create a clan, making you the first member, the owner and not allowing you to leave.
+
+- **Clanes.jsx**: All the existing clanes list with member number and owner name, also here is the "create clan button".
+
+- **Following.jsx**: Page show all the users you already follow.
+
+- **Home.jsx**: Shows tha main page with the games.
+
+- **Login.jsx**: Log in form and validation.
+
+- **NotFound.jsx**: Default route to not registered urls.
+
+- **Profile.jsx**: Personal profile page.
+
+- **Register.jsx**: New user register form and validation.
+
+- **Trophies.jsx**: Shows all available trophies and the game.
+
+- **User.jsx**: Other users information page.
+
+### Styles
+this folder contains all the CSS for every page in the project.
+
+**App.jsx**: Contains all routes of the project, including the protected ones, the context providers and the log out function.
+
+**Constants.js**: Access and refresh tokens variables.
+
+**index.css**: Main css styles for all project.
+
+**main.jsx**: Main component and ui provider.
+
+project also contains vite and react files for correct functioning like package.json for version management
+
+## crud_api
+Contains main settings for the Django project and adds app url's
+
+- **setting.py**: Add settings for django libraries like simple JWT, corsheaders, core_api, and the main app.
+
+## virtual
+Contains virtual enviroment
+
+**db.sqlite3**: actuall database
+
+**manage.py**: main Django file to start back-end app
+
+**requirements.txt**: All python packages required to make app work
+
+**test.rest**: basic api test for some endpoints
