@@ -1,3 +1,8 @@
+import redCarImage from './assets/RedCar.png';
+import orangeCarImage from './assets/OrangeCar.png';
+import brownCarImage from './assets/BrownCar.png';
+import greenCarImage from './assets/GreenCar.png';
+
 export class Obstacles {
     constructor({ position, imageSrc, game }) {
         this.game = game;
@@ -41,10 +46,10 @@ export class Obstacles {
         this.position.y = -this.game.height - 250;
         this.position.x = Math.random() * (this.rightBorder - 75) + 30;
         let sprites = [
-            './assets/BrownCar.png',
-            './assets/GreenCar.png',
-            './assets/OrangeCar.png',
-            './assets/RedCar.png',
+            brownCarImage,
+            greenCarImage,
+            orangeCarImage,
+            redCarImage,
         ];
         const randomSprite = Math.floor(Math.random() * sprites.length);
         this.image.src = sprites[randomSprite];
