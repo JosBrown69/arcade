@@ -16,7 +16,6 @@ import { Clanes } from './pages/Clanes';
 import { ClanCreate } from './pages/ClanCreate';
 import { Trophie } from './components/Trophie';
 import { User } from './pages/User';
-import { Chat } from './pages/Chat';
 import { MainGame } from './Games/PoliceChase/Game';
 
 function Logout() {

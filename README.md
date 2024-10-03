@@ -6,8 +6,44 @@ _This is a video game-based app with challenges and user interaction, similar to
 
 My project is distinct from the previous ones because it is a virtual game room. While there is some interaction between users, the main focus is on the games, challenging friends and other users, and comparing achievements. This is why the games are fully integrated into the app interface, making them fun and engaging. Additionally, users are not required to log in to play some games, but doing so enriches the overall user experience.
 The project is more complex than the previous ones due to the use of _through_ to define more complex relationships in Django models. It also incorporates Django libraries like DRF (Django Rest Framework) to manage HTTP requests, serialize information using serializers, and handle authentication permissions and classes. Additionally, it utilizes Simple JWT for a custom authentication method and corsheaders to simplify HTTP requests.
-For the front-end part, I used the React library and tools like react-hook-form, react-router-dom, and jwt-decode to simplify difficult or tedious tasks. I also utilized Axios and async/await instead of .then to manage HTTP requests more easily, centralizing all functions in a single file for reuse. Additionally, I employed contexts for data shared across multiple pages or components, avoiding the need to pass multiple function arguments or engage in prop drilling for more efficient code.
+For the front-end part, I used the React library and tools like react-hook-form, react-router-dom, and jwt-decode to simplify difficult or tedious tasks. I also utilized Axios and async/await instead of .then to manage HTTP requests more easily, centralizing all functions in a single file for reuse. Additionally, I employed contexts for data shared across multiple pages or components, avoiding the need to pass multiple function arguments or engage in prop drilling for more efficient code, also including chakra ui for styled components.
 The game coding part was also more difficult and complex because making a game run requires a strong foundation in OOP (Object-Oriented Programming), including concepts like classes, constructors, and object pooling. It also necessitates a degree of logic to ensure the code functions as intended, avoiding performance-related issues or bugs.
+
+---
+
+## How to run
+
+**1. clone repositorie and navigate to project directory**
+
+**2. Activate the virtual environment:**
+
+`source virtual/bin/activate`
+
+**3. Install the required Python dependencies:**
+
+`pip install -r requirements.txt`
+
+**4. Apply migrations to set up the database:**
+
+`python manage.py migrate`
+
+**5. Run the Django development server:**
+
+`python manage.py runserver`
+
+**6. Open another terminal window and navigate to the frontend directory:**
+
+`cd arcade_front`
+
+**7. Install the frontend dependencies:**
+
+`npm install`
+
+**8. Start the frontend development server:**
+
+`npm run dev`
+
+
 
 ---
 
