@@ -20,7 +20,7 @@ export class Player {
         for (let i = 0; i < this.obstacles.length; i++) {
             const obstacle = this.obstacles[i];
             if (collisions({ player: this, object: obstacle })) {
-                this.game.state = 'gameOver';
+                this.game.state = 'gameOver'
             }
         }
     }

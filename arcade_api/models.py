@@ -16,8 +16,9 @@ class Follower(models.Model):
         return f'{self.seguidor} siguiendo a {self.siguiendo}'
     
 class Game(models.Model):
-    game = models.CharField(max_length=10)
-    played = models.PositiveIntegerField(default=0)
+    game = models.CharField(max_length=40)
+    record = models.PositiveIntegerField(default=0)
+    player = models.ForeignKey(User, on_delete=models.CASCADE, related_name='player', null=True, blank=True)
 
     def __str__(self):
         return f'{self.game}'

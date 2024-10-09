@@ -106,7 +106,7 @@ export function Clan() {
                         )}
                     </Flex>
                     <section>
-                        <h2 className='titles'>Social</h2>
+                        <h2 className='titles'>Interactions</h2>
                         <Box
                             marginBottom='2rem'
                             overflow='scroll'

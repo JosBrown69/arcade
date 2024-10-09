@@ -15,6 +15,7 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("api-auth/", include("rest_framework.urls")),
     path('game/<int:game_id>/', views.GetGameView.as_view(), name='game'),
+    path('game/<int:game_id>/update_record', views.updateGameRecordView.as_view(), name='game_record'),
     path('games/', views.GetGamesView.as_view(), name='games'),
     path('trophies/', views.GetTrophieListView.as_view(), name='trophies'),
     path('trophie/<int:trophie_id>/', views.GetTrophieView.as_view(), name='trophie'),
@@ -28,4 +29,3 @@ urlpatterns = [
     path('member/<int:member_id>/delete/', views.DeleteMember.as_view(), name='member_delete'),
     path('members/', views.RetriveMembers.as_view(), name='getMember')
 ]
-

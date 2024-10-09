@@ -45,6 +45,12 @@ class GetGameView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     lookup_url_kwarg = 'game_id'
 
+class updateGameRecordView(generics.UpdateAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_url_kwarg = 'game_id'
+
 class GetGamesView(generics.ListAPIView):
     queryset = Game.objects.all()
     serializer_class = GameSerializer

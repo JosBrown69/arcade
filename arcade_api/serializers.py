@@ -50,9 +50,16 @@ class AchieverSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class GameSerializer(serializers.ModelSerializer):
+    player = UserSerializer(read_only=True)
+
+    def update(self, instance, validated_data):
+        instance.player = self.context['request'].user
+        return super().update(instance, validated_data)
+
     class Meta:
         model = Game
         fields = '__all__'
+        depth = 2
 
 class ClanSerializer(serializers.ModelSerializer):
     creator = UserSerializer(read_only=True)

@@ -145,6 +145,8 @@ Contains the first game available with or without login in.
 
 - **Following.jsx**: Page show all the users you already follow.
 
+- **GamaPage.jsx**: Page to switch beetween games based on params id.
+
 - **Home.jsx**: Shows tha main page with the games.
 
 - **Login.jsx**: Log in form and validation.

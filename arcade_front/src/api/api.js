@@ -49,5 +49,6 @@ export const getTrophie = (id) => api.get(`/trophie/${id}`)
 
 //Games API
 export const getGame = (id) => api.get(`/game/${id}`)
+export const updateRecord = (id, data) => api.put(`/game/${id}/update_record`, data)
 export const getGames = () => api.get('/games/')
 

@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { Background } from './Backgrund';
 import { Player } from './Player';
 import { Obstacles } from './Obstacles';
@@ -47,7 +46,7 @@ export class Game {
         this.touchLeft.detectTouch();
         this.touchRight.detectTouch();
         if (playerImage) {
-            this.player = new Player({ 
+            this.player = new Player({
                 game: this,
                 imageSrc: playerImage,
                 obstacles: this.obstaclePool,
@@ -55,9 +54,10 @@ export class Game {
             });
         }
         this.score = new ScoreBoard();
+        this.points = 0;
     }
 
-    render(ctx) {
+    render(ctx, setPoints) {
         switch (this.state) {
             case 'start':
                 this.start(ctx);
@@ -75,7 +75,8 @@ export class Game {
                 this.score.draw(ctx);
                 break;
             case 'gameOver':
-                this.gameOver(ctx);
+                this.saveScore();
+                this.gameOver(ctx, setPoints);
                 break;
         }
     }
@@ -96,14 +97,20 @@ export class Game {
         this.state = 'playing';
     }
 
-    gameOver(ctx) {
+    gameOver(ctx, setPoints) {
+        this.saveScore();
+        setPoints(this.points);
+        clearInterval(this.scoreInterval);
+        clearInterval(this.speedInterval);
         ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, this.width, this.height);
         ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
         ctx.font = '50px Arial';
         ctx.fillText('Game Over', 50, this.height / 2);
+        ctx.font = '40px Arial';
+        ctx.fillText(`Score ${this.points}`, 50, this.height / 2 + 70);
         ctx.font = '20px Arial';
-        ctx.fillText('press space bar to start', 75, this.height / 2 + 50);
+        ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
     }
 
     reset(ctx) {
@@ -114,6 +121,9 @@ export class Game {
         this.player.obstacles = this.obstaclePool;
         ctx.fillStyle = 'black';
         this.state = 'playing';
+        clearInterval(this.scoreInterval);
+        clearInterval(this.speedInterval);
+        this.timeUpdates();
     }
 
     createBackground() {
@@ -132,23 +142,23 @@ export class Game {
         }
     }
 
+    saveScore() {
+        this.points = this.score.score;
+    }
+
     timeUpdates() {
-        setInterval(() => {
+        this.scoreInterval = setInterval(() => {
             this.score.update();
         }, 1000);
-        if (this.obstaclePool[0].speed < 10) {
-            setInterval(() => {
-                this.obstaclePool.forEach((obstacle) => {
-                    obstacle.increaseSpeed();
-                });
-            }, 10000);
-        } else {
-            setInterval(() => {
-                this.obstaclePool.forEach((obstacle) => {
-                    obstacle.increaseSpeed();
-                });
-            }, 15000);
-        }
+
+        const speedUpdateInterval =
+            this.obstaclePool[0].speed < 10 ? 10000 : 15000;
+
+        this.speedInterval = setInterval(() => {
+            this.obstaclePool.forEach((obstacle) => {
+                obstacle.increaseSpeed();
+            });
+        }, speedUpdateInterval);
     }
 
     getBackground() {
@@ -185,43 +195,4 @@ export class Game {
             if (this.obstaclePool[i].free) return this.obstaclePool[i];
         }
     }
-}
-
-export function MainGame() {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-        const game = new Game({ canvas });
-        let animationFrame;
-
-        ctx.fillStyle = 'red';
-        ctx.fillRect(50, 50, 100, 100);
-
-        const handleKeydown = (e) => {
-            if (e.code === 'Space') {
-                if (game.state === 'gameOver' || game.state === 'start') {
-                    game.reset(ctx);
-                }
-            }
-        };
-
-        window.addEventListener('keydown', handleKeydown);
-
-        const gameLoop = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            game.render(ctx);
-            animationFrame = requestAnimationFrame(gameLoop);
-        };
-
-        gameLoop();
-
-        return () => {
-            cancelAnimationFrame(animationFrame);
-            window.removeEventListener('keydown', handleKeydown);
-        };
-    }, []);
-
-    return <canvas ref={canvasRef} width={360} height={540}></canvas>;
 }

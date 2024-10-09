@@ -16,7 +16,7 @@ import { Clanes } from './pages/Clanes';
 import { ClanCreate } from './pages/ClanCreate';
 import { Trophie } from './components/Trophie';
 import { User } from './pages/User';
-import { MainGame } from './Games/PoliceChase/Game';
+import { GamePage } from './pages/GamePage';
 
 function Logout() {
     localStorage.clear();
@@ -35,7 +35,7 @@ function App() {
                             <Route path='/home' element={<Home />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/logout' element={<Logout />} />
-                            <Route path='/game' element={<MainGame />} />
+                            <Route path='/game/:id' element={<GamePage />} />
                             <Route path='/register' element={<Register />} />
                             <Route path='*' element={<NotFound />} />
                             <Route

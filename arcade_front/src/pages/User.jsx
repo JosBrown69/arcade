@@ -50,8 +50,6 @@ export function User() {
             ? '#e752ae'
             : 'Filipino' || null;
 
-    console.log(userGender);
-
     return (
         <div>
             {usuario && followers && clanes ? (
