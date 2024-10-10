@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useParams } from 'react-router-dom';
 import { getGame, updateRecord } from '../../api/api';
-import { Heading, Box } from '@chakra-ui/react';
+import { Heading, Box, useToast } from '@chakra-ui/react';
 import { Game } from './Game';
 
 export function MainGame() {
@@ -12,20 +12,26 @@ export function MainGame() {
     const [juego, setJuego] = useState();
     const [record, setRecord] = useState();
     const [jugador, setJugador] = useState();
+    const toast = useToast();
 
     const canvasRef = useRef(null);
 
-    console.log(jugador);
-
     const actualizarRecord = async () => {
         try {
-            await updateRecord(1, {game:juego.game, record:points})
-            obtenerJuego()
-            console.log('gallo');
-        } catch(errors) {
-            console.error(errors)
+            await updateRecord(params.id, { game: juego.game, record: points });
+            toast({
+                title: 'New Record!',
+                description: `You make ${points} points`,
+                position:'bottom-left',
+                status: 'success',
+                duration: 4000,
+                isClosable: true,
+            });
+            obtenerJuego();
+        } catch (errors) {
+            console.error(errors);
         }
-    }
+    };
 
     const obtenerJuego = async () => {
         try {
@@ -33,8 +39,8 @@ export function MainGame() {
             if (data?.player?.username) {
                 setJugador(data.player.username);
             }
-            if(data?.record){
-                setRecord(data.record)
+            if (data?.record) {
+                setRecord(data.record);
             }
             setJuego(data);
         } catch (errors) {
@@ -43,10 +49,10 @@ export function MainGame() {
     };
 
     useEffect(() => {
-        if (points > 0 && points > record && user) { 
+        if (points > 0 && points > record && user) {
             actualizarRecord();
         }
-    }, [points]); 
+    }, [points]);
 
     useEffect(() => {
         obtenerJuego();

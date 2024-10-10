@@ -39,6 +39,11 @@ class Trophier(models.Model):
     gamer = models.ForeignKey(User, on_delete=models.CASCADE)
     trofeo = models.ForeignKey(Trophie, on_delete=models.CASCADE)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['gamer', 'trofeo'], name='unique_gamer_trofeo')
+        ]
+
     def __str__(self):
         return f'{self.trofeo}: {self.gamer}'
     

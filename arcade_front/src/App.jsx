@@ -16,6 +16,7 @@ import { Clanes } from './pages/Clanes';
 import { ClanCreate } from './pages/ClanCreate';
 import { Trophie } from './components/Trophie';
 import { User } from './pages/User';
+import { FreeGame } from './pages/FreeGame';
 import { GamePage } from './pages/GamePage';
 
 function Logout() {
@@ -35,9 +36,17 @@ function App() {
                             <Route path='/home' element={<Home />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/logout' element={<Logout />} />
-                            <Route path='/game/:id' element={<GamePage />} />
+                            <Route path='/game/' element={<FreeGame />} />
                             <Route path='/register' element={<Register />} />
                             <Route path='*' element={<NotFound />} />
+                            <Route
+                                path='/game/:id'
+                                element={
+                                    <ProtectedRoute>
+                                        <GamePage />
+                                    </ProtectedRoute>
+                                }
+                            />
                             <Route
                                 path='/profile'
                                 element={
