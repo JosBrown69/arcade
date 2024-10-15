@@ -125,7 +125,11 @@ Contains the first game available with or without login in.
 
 - **Collisions.jsx**: Function to validate if the Player class is colliding with an object.
 
-- **Game.jsx**: Contains the main game class, including the overall game structure, the MainGame component, the game loop, and the canvas rendering.
+- **Game.jsx**: Contains the logic of the game in a last class to put everything together
+
+- **GameMain.js**: Contains the game component and the logic to interact with the rest of the interface aand making the required API calls if needed.
+
+- **JuegoGratis**: Shows the game in the main menu without requiring authentication, doesn't interact with the rest of the app. 
 
 - **Obstacles.jsx**: Defines obstacle class and behavior.
 
