@@ -46,7 +46,7 @@ export const clanCreate = (data) => api.post('/clan/create/', data)
 //Trophies API
 export const getTrophies = () => api.get('/trophies/')
 export const getTrophie = (id) => api.get(`/trophie/${id}`)
-export const winTrophie = (id, data) => (`/trophie/${id}/win_trophie`, data)
+export const winTrophie = (id) => api.post(`/trophie/${id}/win_trophie/`)
 
 //Games API
 export const getGame = (id) => api.get(`/game/${id}`)

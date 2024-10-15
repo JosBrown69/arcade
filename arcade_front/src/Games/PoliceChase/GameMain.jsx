@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { TrophieContext } from '../../context/TrophieContext';
 import { useParams } from 'react-router-dom';
-import { getGame, updateRecord } from '../../api/api';
+import { getGame, updateRecord, winTrophie } from '../../api/api';
 import { Heading, Box, useToast } from '@chakra-ui/react';
 import { Game } from './Game';
 
 export function MainGame() {
     const params = useParams();
     const { user } = useContext(AuthContext);
+    const { trophies } = useContext(TrophieContext);
     const [points, setPoints] = useState();
     const [juego, setJuego] = useState();
     const [record, setRecord] = useState();
@@ -22,7 +24,7 @@ export function MainGame() {
             toast({
                 title: 'New Record!',
                 description: `You make ${points} points`,
-                position:'bottom-left',
+                position: 'bottom-left',
                 status: 'success',
                 duration: 4000,
                 isClosable: true,
@@ -30,6 +32,120 @@ export function MainGame() {
             obtenerJuego();
         } catch (errors) {
             console.error(errors);
+        }
+    };
+
+    const ganarTrophie = async () => {
+        if (points >= 15) {
+            try {
+                await winTrophie(9);
+                toast({
+                    title: 'New Trophy',
+                    description: `200 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+                await winTrophie(8);
+                toast({
+                    title: 'New Trophy',
+                    description: `150 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+                await winTrophie(7);
+                toast({
+                    title: 'New Trophy',
+                    description: `100 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+                await winTrophie(10);
+                toast({
+                    title: 'New Trophy',
+                    description: `10 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+            } catch (errors) {
+                console.error(errors);
+            }
+        } else if (points >= 10) {
+            try {
+                await winTrophie(8);
+                toast({
+                    title: 'New Trophy',
+                    description: `150 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+                await winTrophie(7);
+                toast({
+                    title: 'New Trophy',
+                    description: `100 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+                await winTrophie(10);
+                toast({
+                    title: 'New Trophy',
+                    description: `10 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+            } catch (errors) {
+                console.error(errors);
+            }
+        } else if (points >= 5) {
+            try {
+                await winTrophie(7);
+                toast({
+                    title: 'New Trophy',
+                    description: `100 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+                await winTrophie(10);
+                toast({
+                    title: 'New Trophy',
+                    description: `10 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+            } catch (errors) {
+                console.error(errors);
+            }
+        } else if (points >= 1) {
+            try {
+                await winTrophie(10);
+                toast({
+                    title: 'New Trophy',
+                    description: `10 puntos!`,
+                    position: 'bottom-left',
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                });
+            } catch (errors) {
+                console.error(errors);
+            }
         }
     };
 
@@ -51,6 +167,9 @@ export function MainGame() {
     useEffect(() => {
         if (points > 0 && points > record && user) {
             actualizarRecord();
+        }
+        if (points > 0) {
+            ganarTrophie();
         }
     }, [points]);
 

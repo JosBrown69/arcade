@@ -1,5 +1,5 @@
+import { JuegoGratis } from '../Games/PoliceChase/JuegoGratis';
+
 export function FreeGame() {
-  return (
-    <div>FreeGame</div>
-  )
+    return <JuegoGratis />;
 }

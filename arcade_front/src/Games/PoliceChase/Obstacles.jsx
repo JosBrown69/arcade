@@ -9,7 +9,7 @@ export class Obstacles {
         this.position = position;
         this.width = 45;
         this.height = 90;
-        this.speed = 3;
+        this.speed = 5;
         this.image = new Image();
         this.image.src = imageSrc;
         this.free = true;
