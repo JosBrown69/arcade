@@ -186,6 +186,12 @@ export function MainGame() {
         ctx.fillStyle = 'red';
         ctx.fillRect(50, 50, 100, 100);
 
+        const manualRestart = () => {
+            if (game.state === 'start' || game.state === 'gameOver') {
+                game.reset(ctx);
+            }
+        }
+
         const handleKeydown = (e) => {
             if (e.code === 'Space') {
                 if (game.state === 'start' || game.state === 'gameOver') {
@@ -205,6 +211,7 @@ export function MainGame() {
         gameLoop();
 
         return () => {
+            manualRestart()
             cancelAnimationFrame(animationFrame);
             window.removeEventListener('keydown', handleKeydown);
         };
@@ -232,7 +239,7 @@ export function MainGame() {
                     </>
                 )
             )}
-            <canvas ref={canvasRef} width={360} height={540}></canvas>
+            <canvas ref={canvasRef} width={360} height={540} onClick={console.log('gallo')}></canvas>
         </>
     );
 }

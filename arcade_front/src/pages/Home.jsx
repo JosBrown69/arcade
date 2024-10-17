@@ -40,7 +40,7 @@ export function Home() {
                 )}
             </Box>
             {!isAuthorized && (
-                <Box p={6} w='20%' onClick={() => navigate(`/game/`)}>
+                <Box p={6} w='250px' onClick={() => navigate(`/game/`)}>
                     <Card alt='gameIcon' align='center'>
                         <CardBody>
                             <Image src='gameicon.png' />
@@ -48,6 +48,36 @@ export function Home() {
                         <Heading>Police Chase</Heading>
                     </Card>
                 </Box>
+            )}
+            {isAuthorized && (
+                <>
+                    <Box display='flex' w='100%'>
+                        <Box
+                            p={6}
+                            w='250px'
+                            onClick={() => navigate(`/game/1`)}
+                        >
+                            <Card alt='gameIcon' align='center'>
+                                <CardBody>
+                                    <Image src='gameicon.png' />
+                                </CardBody>
+                                <Heading size='md'>Police Chase</Heading>
+                            </Card>
+                        </Box>
+                        <Box
+                            p={6}
+                            w='250px'
+                            onClick={() => navigate(`/game/2`)}
+                        >
+                            <Card alt='gameIcon' align='center'>
+                                <CardBody>
+                                    <Image src='gameicon.png' />
+                                </CardBody>
+                                <Heading size='md'>Super Jump</Heading>
+                            </Card>
+                        </Box>
+                    </Box>
+                </>
             )}
         </main>
     );
