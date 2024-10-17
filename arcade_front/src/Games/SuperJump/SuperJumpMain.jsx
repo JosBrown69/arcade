@@ -1,19 +1,29 @@
 import { useEffect, useRef } from 'react';
+import fallingLeft from './assets/fallingLeft.png'
+import fallingRight from './assets/fallingRight.png'
+import jumpingLeft from './assets/jumpingLeft.png'
+import jumpingRight from './assets/jumpingRight.png'
+import steadyLeft from './assets/steadyLeft.png'
+import steadyRight from './assets/steadyRight.png'
 
 class Player {
-    constructor({game}) {
+    constructor({game, imageSrc}) {
         this.game = game
         this.width = 40
         this.height = 40
+        this.image = new Image()
+        this.image.src = imageSrc
+        this.direction = 'right'
         this.speed = {
             x: 0,
             y: 0,
         }
-        this.gravity = 1
+        this.gravity = 0.5
         this.position = {
             x: game.width / 2 - 20,
             y: game.height - this.height - 360, 
         }
+        this.ground = false
     }
 
     render(ctx) {
@@ -21,12 +31,30 @@ class Player {
         this.position.x += this.speed.x;
         this.listeners()
         this.controls()
+        this.applyGravity()
+        this.detectBottom()
+        this.autoJump()
         this.detectBorder()
+        this.changeDirection()
+        this.changeSprite()
+        console.log(this.direction);
     }
 
     draw(ctx) {
-        ctx.fillStyle = 'red'
-        ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+        ctx.drawImage(this.image, this.position.x, this.position.y);
+    }
+
+    changeDirection(){
+        if(this.speed.x > 0) {
+            this.direction = 'right'
+        }
+        if(this.speed.x < 0){
+            this.direction = 'left'
+        }
+    }
+
+    changeSprite() {
+        
     }
 
     detectBorder() {
@@ -40,6 +68,20 @@ class Player {
     detectBottom() {
         if(this.position.y > this.game.height - this.height){
             this.position.y = this.game.height - this.height
+            this.speed.y = 0
+            this.ground = true
+        }
+    }
+
+    applyGravity() {
+        this.speed.y += this.gravity;
+        this.position.y += this.speed.y;
+    }
+
+    autoJump() {
+        if(this.ground) {
+            this.speed.y = -15
+            this.ground = false
         }
     }
 
@@ -63,7 +105,7 @@ class Player {
                     this.game.keys.right = false;
                     break;
             }
-        });
+        }); 
     }
 
     controls() {
@@ -104,7 +146,8 @@ class Game {
             game: this
         })
         this.player = new Player({
-            game: this
+            game: this,
+            imageSrc: steadyRight,
         })
     }
 
