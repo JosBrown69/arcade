@@ -1,8 +1,8 @@
-import { Background } from './Backgrund';
-import { Player } from './Player';
-import { Obstacles } from './Obstacles';
-import { ScoreBoard } from './ScoreBoard';
-import { TouchInput } from './TouchInput';
+import { Background } from './classes/Backgrund';
+import { Player } from './classes/Player';
+import { Obstacles } from './classes/Obstacles';
+import { ScoreBoard } from './classes/ScoreBoard';
+import { TouchInput } from './classes/TouchInput';
 import mapImage from './assets/map.png';
 import redCarImage from './assets/RedCar.png';
 import orangeCarImage from './assets/OrangeCar.png';

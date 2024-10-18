@@ -1,7 +1,7 @@
-import redCarImage from './assets/RedCar.png';
-import orangeCarImage from './assets/OrangeCar.png';
-import brownCarImage from './assets/BrownCar.png';
-import greenCarImage from './assets/GreenCar.png';
+import redCarImage from '../assets/RedCar.png';
+import orangeCarImage from '../assets/OrangeCar.png';
+import brownCarImage from '../assets/BrownCar.png';
+import greenCarImage from '../assets/GreenCar.png';
 
 export class Obstacles {
     constructor({ position, imageSrc, game }) {
