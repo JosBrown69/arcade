@@ -1,11 +1,13 @@
+import {enemyCollisions, platformCollisions} from './utils'
 import fallingLeft from '../assets/fallingLeft.png'
 import fallingRight from '../assets/fallingRight.png'
 import jumpingLeft from '../assets/jumpingLeft.png'
 import jumpingRight from '../assets/jumpingRight.png'
 
 export class Player {
-    constructor({game, imageSrc}) {
+    constructor({game, imageSrc, platforms}) {
         this.game = game
+        this.platforms = platforms
         this.width = 40
         this.height = 40
         this.image = new Image()
@@ -15,7 +17,7 @@ export class Player {
             x: 0,
             y: 0,
         }
-        this.gravity = 0.5
+        this.gravity = 0.1
         this.position = {
             x: game.width / 2 - 20,
             y: game.height - this.height - 360, 
@@ -34,10 +36,20 @@ export class Player {
         this.detectBorder()
         this.changeDirection()
         this.changeSprite()
+        this.platformDetection()
+        this.platformMovement()
     }
 
     draw(ctx) {
         ctx.drawImage(this.image, this.position.x, this.position.y);
+    }
+
+    update(){
+        return
+    }
+
+    reset(){
+        return
     }
 
     changeDirection(){
@@ -80,16 +92,43 @@ export class Player {
         }
     }
 
+    platformDetection() {
+        for (let i = 0; i < this.platforms.length; i++) {
+            const platform = this.platforms[i];
+            if (platformCollisions({ player: this, object: platform })) {
+                this.ground = true
+            }
+        }
+    }
+
+    platformMovement(){
+        if(this.position.y < 250){
+            this.platforms.forEach(platform => {
+                platform.speed.y = 3
+            }) 
+        } else {
+            this.platforms.forEach(platform => {
+                platform.speed.y = 0
+            }) 
+        }
+    }
+
     applyGravity() {
         this.speed.y += this.gravity;
         this.position.y += this.speed.y;
     }
 
     autoJump() {
-        if(this.ground) {
-            this.speed.y = -10
-            this.ground = false
+        if(this.position.y > 200) {
+            if(this.ground) {
+                this.speed.y = -5
+                this.ground = false
+            }
         }
+        //if(this.ground && this.position.y < 100) {
+        //    this.speed.y = 0
+        //    this.ground = false
+        //}
     }
 
     listeners() {
@@ -117,9 +156,9 @@ export class Player {
 
     controls() {
         if (this.game.keys.left) {
-            this.speed.x = -5;
+            this.speed.x = -4;
         } else if (this.game.keys.right) {
-            this.speed.x = 5;
+            this.speed.x = 4;
         }
     }
 }

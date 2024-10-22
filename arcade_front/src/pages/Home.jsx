@@ -71,7 +71,7 @@ export function Home() {
                         >
                             <Card alt='gameIcon' align='center'>
                                 <CardBody>
-                                    <Image src='gameicon.png' />
+                                    <Image src='CatLogo.png' />
                                 </CardBody>
                                 <Heading size='md'>Super Jump</Heading>
                             </Card>
