@@ -52,7 +52,6 @@ export function UserForm({ route }) {
         } else if (route === 'register') {
             try {
                 const res = await registrar(data);
-                console.log(res);
                 navigate('/login/');
             } catch (errors) {
                 if (

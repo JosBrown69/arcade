@@ -1,16 +1,16 @@
 export class Platform {
-    constructor({ game, position, imageSrc }) {
+    constructor({ game, position, imageSrc, moving }) {
         this.position = position;
         this.image = new Image();
         this.image.src = imageSrc;
         this.width = 60;
-        this.height = 5;
+        this.height = 15;
         this.game = game;
         this.speed = {
             x: 0,
             y: 0,
         };
-        this.moving = false;
+        this.moving = moving;
         this.direction = 'right';
         this.free = true;
     }
@@ -41,7 +41,7 @@ export class Platform {
     reset() {
         let rightBorder = this.game.width - 44
         this.free = true;
-        this.position.y = Math.random() * -50 + 0;
+        this.position.y = Math.random() * -10;
         this.position.x = Math.random() * (rightBorder - 4) + 4;
     }
 
