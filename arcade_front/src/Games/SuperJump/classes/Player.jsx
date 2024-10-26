@@ -17,13 +17,14 @@ export class Player {
             x: 0,
             y: 0,
         };
-        this.gravity = 0.1;
+        this.gravity = 0.5;
         this.position = {
             x: game.width / 2 - 20,
             y: game.height - this.height,
         };
         this.ground = false;
         this.movement = 0;
+        this.points = 0;
     }
 
     render(ctx) {
@@ -41,19 +42,17 @@ export class Player {
         this.platformDetection();
         this.platformAction();
         this.enemyDetection();
-        //console.log(this.enemies[2].position.y);
     }
 
     draw(ctx) {
         ctx.drawImage(this.image, this.position.x, this.position.y);
     }
 
-    update() {
-        return;
-    }
-
     reset() {
-        return;
+        this.position = {
+            x: game.width / 2 - 20,
+            y: game.height - this.height,
+        };
     }
 
     changeDirection() {
@@ -109,8 +108,15 @@ export class Player {
                 const platform = this.platforms[i];
                 if (platformCollisions({ player: this, object: platform })) {
                     this.ground = true;
+                    this.points ++
                 }
             }
+        }
+    }
+
+    scoreUpdate(){
+        if(this.ground){
+            this.game.scoreUpdate()
         }
     }
 
@@ -133,7 +139,7 @@ export class Player {
     }
 
     platformAction() {
-        setInterval(this.platformMovement(), 40);
+        setInterval(this.platformMovement(), 20);
     }
 
     enemyDetection() {
@@ -153,7 +159,7 @@ export class Player {
 
     autoJump() {
         if (this.ground) {
-            this.speed.y = -6;
+            this.speed.y = -13;
             this.ground = false;
         }
     }

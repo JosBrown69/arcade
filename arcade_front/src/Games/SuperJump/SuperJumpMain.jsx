@@ -3,20 +3,22 @@ import { Player } from './classes/Player';
 import { Background } from './classes/Background';
 import { Platform } from './classes/Platform';
 import { Enemy } from './classes/Enemy';
+import { ScoreBoard } from './classes/ScoreBoard';
 import backgroundImage from './assets/background.jpg';
 import platformImage from './assets/platform.png';
 
 class Game {
     constructor({ canvas }) {
         this.canvas = canvas;
+        this.state = 'playing';
         this.width = canvas.width;
         this.height = canvas.height;
         this.platforms = 11;
         this.platformPool = [];
         this.createPlatforms();
-        this.enemies = 3;
+        this.enemies = 7;
         this.enemyPool = [];
-        this.createEnemies()
+        this.createEnemies();
         this.keys = {
             left: false,
             right: false,
@@ -30,17 +32,40 @@ class Game {
             platforms: this.platformPool,
             enemies: this.enemyPool,
         });
+        this.score = new ScoreBoard();
+        this.points = 0
     }
 
     render(ctx) {
-        this.background.render(ctx);
-        this.platformPool.forEach((platform) => {
-            platform.render(ctx);
-        });
-        this.enemyPool.forEach((enemy) => {
-            enemy.render(ctx)
-        })
-        this.player.render(ctx);
+        switch (this.state) {
+            case 'start':
+                this.start(ctx);
+                break;
+            case 'playing':
+                this.background.render(ctx);
+                this.platformPool.forEach((platform) => {
+                    platform.render(ctx);
+                });
+                this.enemyPool.forEach((enemy) => {
+                    enemy.render(ctx);
+                });
+                this.player.render(ctx);
+                this.score.draw(ctx);
+                this.scoreUpdate()
+                break;
+            case 'gameOver':
+                this.saveScore();
+                this.gameOver(ctx);
+                break;
+        }
+    }
+
+    start(){
+        return
+    }
+
+    gameOver(){
+        return
     }
 
     createPlatforms() {
@@ -65,7 +90,8 @@ class Game {
                     positionY = Math.random() * (spacing * 5 - 432) + 432;
                 }
                 let positionX = Math.random() * (rightBorder - 4) + 4;
-                let isMoving = Math.random() < 0.2;
+                //let isMoving = Math.random() < 0.2;
+                let isMoving = false
                 if (isMoving) {
                     this.platformPool.push(
                         new Platform({
@@ -100,16 +126,8 @@ class Game {
         for (let i = 0; i < this.enemies; i++) {
             let rightBorder = this.width - 44;
             let spacing = 500;
-            let positionY;
-            if (i === 0) {
-                positionY = Math.random() * (-spacing + 20) - 20;
-            }
-            if (i === 1) {
-                positionY = Math.random() * (-spacing * 2 + 500) - 500;
-            }
-            if (i === 2) {
-                positionY = Math.random() * (-spacing * 3 + 1000) - 1000;
-            }
+            let minimo = 500
+            let positionY = Math.random() * (-spacing * i + 1 * 3 + minimo * i) - minimo * i
             let positionX = Math.random() * (rightBorder - 4) + 4;
             this.enemyPool.push(
                 new Enemy({
@@ -121,9 +139,17 @@ class Game {
     }
 
     getEnemies() {
-        for(let i = 0; i < this.enemyPool; i++){
-            if(this.platformPool[i]) return this.platformPool[i]
+        for (let i = 0; i < this.enemyPool; i++) {
+            if (this.platformPool[i]) return this.platformPool[i];
         }
+    }
+
+    scoreUpdate(){
+        this.score.score = this.player.points
+    }
+
+    saveScore() {
+        this.points = this.score.score
     }
 }
 

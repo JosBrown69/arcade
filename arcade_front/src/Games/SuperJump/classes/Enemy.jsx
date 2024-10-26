@@ -23,10 +23,24 @@ export class Enemy {
         this.keepInScreen();
         this.changeSprite();
         this.movement();
+        if (this.position.y > this.game.height) {
+            this.reset();
+        }
     }
 
     draw(ctx) {
         ctx.drawImage(this.image, this.position.x, this.position.y);
+    }
+
+    start(){
+        this.free = false
+    }
+
+    reset() {
+        let rightBorder = this.game.width - 44
+        this.free = true;
+        this.position.y = Math.random() * (-1500 * 3 + 1000) - 1000;
+        this.position.x = Math.random() * (rightBorder - 4) + 4;
     }
 
     keepInScreen() {
@@ -58,10 +72,10 @@ export class Enemy {
 
     movement() {
         if (this.direction === 'right') {
-            this.speed.x = 2;
+            this.speed.x = 0;
         }
         if (this.direction === 'left') {
-            this.speed.x = -2;
+            this.speed.x = -0;
         }
     }
 }
