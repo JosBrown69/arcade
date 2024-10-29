@@ -5,9 +5,10 @@ import jumpingLeft from '../assets/jumpingLeft.png';
 import jumpingRight from '../assets/jumpingRight.png';
 
 export class Player {
-    constructor({ game, platforms, enemies }) {
+    constructor({ game, platforms, ground, enemies }) {
         this.game = game;
         this.platforms = platforms;
+        this.piso = ground
         this.enemies = enemies;
         this.width = 40;
         this.height = 40;
@@ -20,7 +21,7 @@ export class Player {
         this.gravity = 0.5;
         this.position = {
             x: game.width / 2 - 20,
-            y: game.height - this.height,
+            y: game.height - this.height - 50,
         };
         this.ground = false;
         this.movement = 0;
@@ -34,6 +35,7 @@ export class Player {
         this.controls();
         this.applyGravity();
         this.detectBottom();
+        this.groundDetection();
         this.autoJump();
         this.detectBorder();
         this.detectTop();
@@ -114,6 +116,14 @@ export class Player {
         }
     }
 
+    groundDetection(){
+        if(this.piso){
+            if (enemyCollisions({ player: this, object: this.piso })) {
+                this.ground = true;
+            }
+        }
+    }
+
     scoreUpdate(){
         if(this.ground){
             this.game.scoreUpdate()
@@ -128,6 +138,7 @@ export class Player {
             this.enemies.forEach((enemy) => {
                 enemy.speed.y = 5
             })
+            this.piso.speed.y = 5
         } else {
             this.platforms.forEach((platform) => {
                 platform.speed.y = 0
@@ -135,6 +146,7 @@ export class Player {
             this.enemies.forEach((enemy) => {
                 enemy.speed.y = 0
             })
+            this.piso.speed.y = 0
         }
     }
 

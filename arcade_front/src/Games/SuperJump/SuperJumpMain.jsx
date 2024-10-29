@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Player } from './classes/Player';
 import { Background } from './classes/Background';
+import { Ground } from './classes/Ground';
 import { Platform } from './classes/Platform';
 import { Enemy } from './classes/Enemy';
 import { ScoreBoard } from './classes/ScoreBoard';
@@ -27,13 +28,17 @@ class Game {
             game: this,
             imageSrc: backgroundImage,
         });
+        this.ground = new Ground({
+            game: this,
+        })
         this.player = new Player({
             game: this,
             platforms: this.platformPool,
+            ground: this.ground,
             enemies: this.enemyPool,
         });
         this.score = new ScoreBoard();
-        this.points = 0
+        this.points = 0;
     }
 
     render(ctx) {
@@ -43,6 +48,7 @@ class Game {
                 break;
             case 'playing':
                 this.background.render(ctx);
+                this.ground.render(ctx)
                 this.platformPool.forEach((platform) => {
                     platform.render(ctx);
                 });
@@ -51,7 +57,7 @@ class Game {
                 });
                 this.player.render(ctx);
                 this.score.draw(ctx);
-                this.scoreUpdate()
+                this.scoreUpdate();
                 break;
             case 'gameOver':
                 this.saveScore();
@@ -60,12 +66,12 @@ class Game {
         }
     }
 
-    start(){
-        return
+    start() {
+        return;
     }
 
-    gameOver(){
-        return
+    gameOver() {
+        return;
     }
 
     createPlatforms() {
@@ -73,7 +79,7 @@ class Game {
             for (let i = 0; i < this.platforms; i++) {
                 let rightBorder = this.width - 44;
                 let positionY;
-                let spacing = 80;
+                let spacing = 100;
                 if (i === 0 || i === 1 || i === 10) {
                     positionY = Math.random() * (spacing - 20) + 20;
                 }
@@ -91,7 +97,7 @@ class Game {
                 }
                 let positionX = Math.random() * (rightBorder - 4) + 4;
                 //let isMoving = Math.random() < 0.2;
-                let isMoving = false
+                let isMoving = false;
                 if (isMoving) {
                     this.platformPool.push(
                         new Platform({
@@ -126,8 +132,10 @@ class Game {
         for (let i = 0; i < this.enemies; i++) {
             let rightBorder = this.width - 44;
             let spacing = 500;
-            let minimo = 500
-            let positionY = Math.random() * (-spacing * i + 1 * 3 + minimo * i) - minimo * i
+            let minimo = 500;
+            let positionY =
+                Math.random() * (-spacing * i + 1 * 3 + minimo * i) -
+                minimo * i;
             let positionX = Math.random() * (rightBorder - 4) + 4;
             this.enemyPool.push(
                 new Enemy({
@@ -144,12 +152,12 @@ class Game {
         }
     }
 
-    scoreUpdate(){
-        this.score.score = this.player.points
+    scoreUpdate() {
+        this.score.score = this.player.points;
     }
 
     saveScore() {
-        this.points = this.score.score
+        this.points = this.score.score;
     }
 }
 
