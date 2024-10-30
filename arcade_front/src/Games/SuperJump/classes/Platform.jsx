@@ -57,10 +57,10 @@ export class Platform {
     movement() {
         if (this.moving) {
             if (this.direction === 'right') {
-                this.speed.x = 3;
+                this.speed.x = 2;
             }
             if (this.direction === 'left') {
-                this.speed.x = -3;
+                this.speed.x = -2;
             }
         }
     }

@@ -20,8 +20,8 @@ export class Player {
         };
         this.gravity = 0.5;
         this.position = {
-            x: game.width / 2 - 20,
-            y: game.height - this.height - 50,
+            x: this.game.width / 2 - 20,
+            y: this.game.height - this.height - 50,
         };
         this.ground = false;
         this.movement = 0;
@@ -44,6 +44,7 @@ export class Player {
         this.platformDetection();
         this.platformAction();
         this.enemyDetection();
+        this.moreEnemies()
     }
 
     draw(ctx) {
@@ -51,10 +52,13 @@ export class Player {
     }
 
     reset() {
-        this.position = {
-            x: game.width / 2 - 20,
-            y: game.height - this.height,
-        };
+        if(this.game){
+            this.position = {
+                x: this.game.width / 2 - 20,
+                y: this.game.height - this.height - 50,
+            };
+            this.points = 0
+        }
     }
 
     changeDirection() {
@@ -91,9 +95,7 @@ export class Player {
 
     detectBottom() {
         if (this.position.y > this.game.height - this.height) {
-            this.position.y = this.game.height - this.height;
-            this.speed.y = 0;
-            this.ground = true;
+            return
         }
     }
 
@@ -161,6 +163,18 @@ export class Player {
                 //console.log('choque');
                 return
             }
+        }
+    }
+
+    moreEnemies(){
+        if(this.points > 20){
+            this.game.enemies = 7
+        }
+        if (this.points > 40){
+            this.game.enemies = 10
+        }
+        if(this.points > 60){
+            this.game.enemies = 13
         }
     }
 

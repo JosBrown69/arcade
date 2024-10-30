@@ -13,7 +13,7 @@ import playerImage from './assets/PoliceCar.png';
 export class Game {
     constructor({ canvas }) {
         this.canvas = canvas;
-        this.width = canvas.width;
+        this.width = canvas.width; 
         this.height = canvas.height;
         this.state = 'start';
         this.backgrounds = 10;

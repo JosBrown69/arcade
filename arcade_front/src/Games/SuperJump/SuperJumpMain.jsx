@@ -11,13 +11,13 @@ import platformImage from './assets/platform.png';
 class Game {
     constructor({ canvas }) {
         this.canvas = canvas;
-        this.state = 'playing';
+        this.state = 'start';
         this.width = canvas.width;
         this.height = canvas.height;
         this.platforms = 11;
         this.platformPool = [];
         this.createPlatforms();
-        this.enemies = 7;
+        this.enemies = 3;
         this.enemyPool = [];
         this.createEnemies();
         this.keys = {
@@ -66,12 +66,32 @@ class Game {
         }
     }
 
-    start() {
-        return;
+    start(ctx) {
+        ctx.fillStyle = 'rgba(0, 200, 0, 0.8)';
+        ctx.fillRect(0, 0, this.width, this.height);
+        ctx.fillStyle = 'black';
+        ctx.font = '50px Arial';
+        ctx.fillText('Super Jump', 35, this.height / 2);
+        ctx.font = '20px Arial';
+        ctx.fillText('Use left & right', 120, this.height / 2 + 50);
+        ctx.fillText('keys to move', 125, this.height / 2 + 80);
+        ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
     }
 
     gameOver() {
         return;
+    }
+
+    reset(ctx){
+        this.platformPool = [];
+        this.createPlatforms();
+        this.enemyPool = [];
+        this.createEnemies()
+        this.player.reset();
+        this.player.platforms = this.platformPool;
+        this.player.enemies = this.enemyPool
+        ctx.fillStyle = 'black';
+        this.state = 'playing';
     }
 
     createPlatforms() {
@@ -96,8 +116,7 @@ class Game {
                     positionY = Math.random() * (spacing * 5 - 432) + 432;
                 }
                 let positionX = Math.random() * (rightBorder - 4) + 4;
-                //let isMoving = Math.random() < 0.2;
-                let isMoving = false;
+                let isMoving = Math.random() < 0.1;
                 if (isMoving) {
                     this.platformPool.push(
                         new Platform({
@@ -172,6 +191,16 @@ export function SuperJumpMain() {
 
         ctx.fillStyle = 'red';
         ctx.fillRect(50, 50, 100, 100);
+
+        const handleKeydown = (e) => {
+            if (e.code === 'Space') {
+                if (game.state === 'start' || game.state === 'gameOver') {
+                    game.reset(ctx);
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeydown);
 
         const gameLoop = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);

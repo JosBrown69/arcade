@@ -10,7 +10,7 @@ export class Enemy {
         this.position = position;
         this.direction = 'right';
         this.speed = {
-            x: 0,
+            x: 1,
             y: 0,
         };
         this.free = true;
@@ -72,10 +72,10 @@ export class Enemy {
 
     movement() {
         if (this.direction === 'right') {
-            this.speed.x = 0;
+            this.speed.x = 1;
         }
         if (this.direction === 'left') {
-            this.speed.x = -0;
+            this.speed.x = -1;
         }
     }
 }
