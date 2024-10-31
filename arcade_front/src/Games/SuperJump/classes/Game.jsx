@@ -4,6 +4,7 @@ import { Ground } from './Ground';
 import { Platform } from './Platform';
 import { Enemy } from './Enemy';
 import { ScoreBoard } from './ScoreBoard';
+import { TouchInput } from './TouchInput';
 import backgroundImage from '../assets/background.jpg';
 import platformImage from '../assets/platform.png';
 
@@ -29,7 +30,23 @@ export class Game {
         });
         this.ground = new Ground({
             game: this,
-        })
+        });
+        this.touchLeft = new TouchInput({
+            game: this,
+            position: { x: 0, y: 0 },
+            width: this.width / 2,
+            height: this.height,
+            direction: 'left',
+        });
+        this.touchRight = new TouchInput({
+            game: this,
+            position: { x: this.width / 2, y: 0 },
+            width: this.width / 2,
+            height: this.height,
+            direction: 'right',
+        });
+        this.touchLeft.detectTouch();
+        this.touchRight.detectTouch();
         this.player = new Player({
             game: this,
             platforms: this.platformPool,
@@ -40,14 +57,14 @@ export class Game {
         this.points = 0;
     }
 
-    render(ctx) {
+    render(ctx, setPoints) {
         switch (this.state) {
             case 'start':
                 this.start(ctx);
                 break;
             case 'playing':
                 this.background.render(ctx);
-                this.ground.render(ctx)
+                this.ground.render(ctx);
                 this.platformPool.forEach((platform) => {
                     platform.render(ctx);
                 });
@@ -60,7 +77,7 @@ export class Game {
                 break;
             case 'gameOver':
                 this.saveScore();
-                this.gameOver(ctx);
+                this.gameOver(ctx, setPoints);
                 break;
         }
     }
@@ -77,7 +94,9 @@ export class Game {
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
     }
 
-    gameOver(ctx) {
+    gameOver(ctx, setPoints) {
+        this.saveScore();
+        setPoints(this.points);
         ctx.fillStyle = 'black';
         ctx.fillRect(0, 0, this.width, this.height);
         ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
@@ -89,15 +108,15 @@ export class Game {
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
     }
 
-    reset(ctx){
+    reset(ctx) {
         this.platformPool = [];
         this.createPlatforms();
         this.enemyPool = [];
-        this.createEnemies()
+        this.createEnemies();
         this.player.reset();
         this.ground.reset();
         this.player.platforms = this.platformPool;
-        this.player.enemies = this.enemyPool
+        this.player.enemies = this.enemyPool;
         ctx.fillStyle = 'black';
         this.state = 'playing';
     }

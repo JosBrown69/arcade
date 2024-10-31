@@ -121,6 +121,11 @@ The folder contains the code for all the games in the app, including their asset
 ### PoliceChase
 Contains the first game available with or without login in.
 
+### assets 
+Containst game images
+
+### classes
+
 - **Background.jsx**: Defines the Background class, including its constructor and methods for managing background functionality.
 
 - **Collisions.jsx**: Function to validate if the Player class is colliding with an object.
@@ -138,6 +143,34 @@ Contains the first game available with or without login in.
 - **ScoreBoard.jsx**: Defines and draw the score board.
 
 - **TouchInput.jsx**: Touch controls for mobile compatibility.
+
+### SuperJump
+Contains second game log in required
+
+### assets
+Contains game images
+
+### classes
+
+- **Background.jsx**: Defines the Background class setting background image.
+
+- **Enemy.jsx**: Creates enemy class and its functionality.
+
+- **Game.jsx**: Main game logic.
+
+- **Ground.jsx**: Initial main platform to avoid instant losing.
+
+- **Platform.jsx**: Platform class and logic.
+
+- **Player.jsx**: Player class logic and controls.
+
+- **ScoreBoard.jsx**: Creates score board to display on screen and manage point data
+
+- **TouchInput.jsx**: Manage controls for mobile screens.
+
+- **Utils.jsx**: Contains functions for enemy and platform detection.
+
+- **SuperJumpMain.jsx**: Main component to manage functions, API calls, interface rendering and interactions.
 
 ### Pages
 

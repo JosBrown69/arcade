@@ -14,7 +14,7 @@ export function MainGame() {
     const [juego, setJuego] = useState();
     const [record, setRecord] = useState();
     const [jugador, setJugador] = useState();
-    const toast = useToast();
+    const toast = useToast(); 
 
     const canvasRef = useRef(null);
 
