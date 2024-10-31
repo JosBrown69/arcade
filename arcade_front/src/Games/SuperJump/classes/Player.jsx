@@ -95,7 +95,7 @@ export class Player {
 
     detectBottom() {
         if (this.position.y > this.game.height - this.height) {
-            return
+            this.game.state = 'gameOver'
         }
     }
 
@@ -160,7 +160,7 @@ export class Player {
         for (let i = 0; i < this.enemies.length; i++) {
             const enemy = this.enemies[i];
             if (enemyCollisions({ player: this, object: enemy })) {
-                //console.log('choque');
+                this.game.state = 'gameOver'
                 return
             }
         }

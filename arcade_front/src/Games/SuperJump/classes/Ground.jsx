@@ -21,6 +21,13 @@ export class Ground{
         this.position.y += this.speed.y;
         this.draw(ctx)
     }
+
+    reset(){
+        this.position = {
+            x: 0,
+            y: this.game.height - 30
+        }
+    }
     
     draw(ctx){
         ctx.drawImage(this.image, this.position.x, this.position.y)
