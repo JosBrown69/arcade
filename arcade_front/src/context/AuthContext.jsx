@@ -26,8 +26,8 @@ export function AuthContextProvider(props) {
             } else {
                 setIsAuthorized(false);
             }
-        } catch (error) {
-            console.log(error);
+        } catch (errors) {
+            console.error(errors);
             setIsAuthorized(false);
         }
     };

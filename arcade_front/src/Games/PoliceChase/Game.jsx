@@ -3,6 +3,7 @@ import { Player } from './classes/Player';
 import { Obstacles } from './classes/Obstacles';
 import { ScoreBoard } from './classes/ScoreBoard';
 import { TouchInput } from './classes/TouchInput';
+import { TouchStart } from './classes/TouchStart';
 import mapImage from './assets/map.png';
 import redCarImage from './assets/RedCar.png';
 import orangeCarImage from './assets/OrangeCar.png';
@@ -13,7 +14,7 @@ import playerImage from './assets/PoliceCar.png';
 export class Game {
     constructor({ canvas }) {
         this.canvas = canvas;
-        this.width = canvas.width; 
+        this.width = canvas.width;
         this.height = canvas.height;
         this.state = 'start';
         this.backgrounds = 10;
@@ -45,8 +46,13 @@ export class Game {
         });
         this.touchLeft.detectTouch();
         this.touchRight.detectTouch();
+        this.touchStart = new TouchStart({
+            game: this,
+            width: this.width,
+            height: this.height
+        })
         if (playerImage) {
-            this.player = new Player({ 
+            this.player = new Player({
                 game: this,
                 imageSrc: playerImage,
                 obstacles: this.obstaclePool,
@@ -91,6 +97,7 @@ export class Game {
         ctx.fillText('Use left & right', 120, this.height / 2 + 50);
         ctx.fillText('keys to move', 125, this.height / 2 + 80);
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
+        this.touchStart.update(ctx)
     }
 
     playing() {

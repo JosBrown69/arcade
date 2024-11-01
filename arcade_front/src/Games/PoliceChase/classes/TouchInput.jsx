@@ -24,6 +24,7 @@ export class TouchInput {
                 } else if (this.direction === 'right') {
                     this.game.keys.right = true;
                 }
+                
             }
         });
 

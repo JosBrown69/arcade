@@ -33,7 +33,6 @@ export function FollowButton({ perfil, update, update2, isFollowing, user }) {
             await unfollow(deleteId);
             update();
             update2();
-            console.log('CLick');
         } catch (errors) {
             console.error(errors);
         }
