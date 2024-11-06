@@ -101,6 +101,8 @@ export class Game {
         ctx.fillText('Use left & right', 120, this.height / 2 + 50);
         ctx.fillText('keys to move', 125, this.height / 2 + 80);
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
+        ctx.font = '20px Arial';
+        ctx.fillText('Touch here to start!', 95, 50);
     }
 
     gameOver(ctx, setPoints) {
@@ -115,6 +117,8 @@ export class Game {
         ctx.fillText(`Score ${this.points}`, 50, this.height / 2 + 70);
         ctx.font = '20px Arial';
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
+        ctx.font = '20px Arial';
+        ctx.fillText('Touch here to restart!', 95, 50);
     }
 
     reset(ctx) {

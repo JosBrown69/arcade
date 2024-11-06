@@ -31,7 +31,7 @@ The game coding part was also more difficult and complex because making a game r
 
 `python manage.py runserver`
 
-**6. Open another terminal window and navigate to the frontend directory:**
+**6. Open another terminal window, activate virtual environment and navigate to the frontend directory:**
 
 `cd arcade_front`
 
@@ -43,8 +43,7 @@ The game coding part was also more difficult and complex because making a game r
 
 `npm run dev`
 
-
-
+### To try touch controls forward a port using dev tunnels
 ---
 
 The project consists of four main folders and some files necessary for the correct functioning of the project:
