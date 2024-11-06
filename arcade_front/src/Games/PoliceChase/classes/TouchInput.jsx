@@ -7,11 +7,12 @@ export class TouchInput {
         this.direction = direction;
     }
 
-    detectTouch() {
+    detectTouch(ctx) {
         window.addEventListener('touchstart', (e) => {
             const touch = e.touches[0];
-            const touchX = touch.clientX;
-            const touchY = touch.clientY;
+            const rect = this.game.canvas.getBoundingClientRect();
+            const touchX = touch.clientX - rect.left;
+            const touchY = touch.clientY - rect.top;
 
             if (
                 touchX >= this.position.x &&
@@ -23,6 +24,8 @@ export class TouchInput {
                     this.game.keys.left = true;
                 } else if (this.direction === 'right') {
                     this.game.keys.right = true;
+                } else if (this.direction === 'restart') {
+                    this.game.reset(ctx)
                 }
                 
             }

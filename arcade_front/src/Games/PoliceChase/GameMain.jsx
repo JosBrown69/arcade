@@ -180,7 +180,7 @@ export function MainGame() {
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
-        const game = new Game({ canvas });
+        const game = new Game({ canvas, ctx });
         let animationFrame;
 
         ctx.fillStyle = 'red';
@@ -194,14 +194,7 @@ export function MainGame() {
             }
         };
 
-        const restart = (e) => {
-            if(game.state === 'start' || game.state === 'gameOver'){
-                game.reset(ctx)
-            }
-        }
-
         window.addEventListener('keydown', handleKeydown);
-        canvas.addEventListener('click', restart)
 
         const gameLoop = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);

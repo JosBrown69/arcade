@@ -3,7 +3,6 @@ import { Player } from './classes/Player';
 import { Obstacles } from './classes/Obstacles';
 import { ScoreBoard } from './classes/ScoreBoard';
 import { TouchInput } from './classes/TouchInput';
-import { TouchStart } from './classes/TouchStart';
 import mapImage from './assets/map.png';
 import redCarImage from './assets/RedCar.png';
 import orangeCarImage from './assets/OrangeCar.png';
@@ -12,7 +11,7 @@ import greenCarImage from './assets/GreenCar.png';
 import playerImage from './assets/PoliceCar.png';
 
 export class Game {
-    constructor({ canvas }) {
+    constructor({ canvas, ctx }) {
         this.canvas = canvas;
         this.width = canvas.width;
         this.height = canvas.height;
@@ -44,13 +43,13 @@ export class Game {
             height: this.height,
             direction: 'right',
         });
-        this.touchLeft.detectTouch();
-        this.touchRight.detectTouch();
-        this.touchStart = new TouchStart({
+        this.touchRestart = new TouchInput({
             game: this,
+            position: { x: 0, y: 0 },
             width: this.width,
-            height: this.height
-        })
+            height: 150,
+            direction: 'restart',
+        });
         if (playerImage) {
             this.player = new Player({
                 game: this,
@@ -67,6 +66,7 @@ export class Game {
         switch (this.state) {
             case 'start':
                 this.start(ctx);
+                this.touchRestart.detectTouch(ctx);
                 break;
             case 'playing':
                 this.backgroundPool.forEach((background) => {
@@ -78,11 +78,14 @@ export class Game {
                     obstacle.update(ctx);
                 });
                 this.player.update(ctx);
+                this.touchLeft.detectTouch(ctx);
+                this.touchRight.detectTouch(ctx);
                 this.score.draw(ctx);
                 break;
             case 'gameOver':
                 this.saveScore();
                 this.gameOver(ctx, setPoints);
+                this.touchRestart.detectTouch(ctx);
                 break;
         }
     }
@@ -97,7 +100,8 @@ export class Game {
         ctx.fillText('Use left & right', 120, this.height / 2 + 50);
         ctx.fillText('keys to move', 125, this.height / 2 + 80);
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
-        this.touchStart.update(ctx)
+        ctx.font = '20px Arial';
+        ctx.fillText('Touch here to start!', 95, 50);
     }
 
     playing() {
@@ -118,6 +122,8 @@ export class Game {
         ctx.fillText(`Score ${this.points}`, 50, this.height / 2 + 70);
         ctx.font = '20px Arial';
         ctx.fillText('Press space bar to start', 75, this.height / 2 + 200);
+        ctx.font = '20px Arial';
+        ctx.fillText('Touch here to restart!', 95, 50);
     }
 
     reset(ctx) {

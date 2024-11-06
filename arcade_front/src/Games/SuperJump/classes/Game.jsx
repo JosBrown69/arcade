@@ -45,8 +45,13 @@ export class Game {
             height: this.height,
             direction: 'right',
         });
-        this.touchLeft.detectTouch();
-        this.touchRight.detectTouch();
+        this.touchRestart = new TouchInput({
+            game: this,
+            position: { x: 0, y: 0 },
+            width: this.width,
+            height: 150,
+            direction: 'restart',
+        });
         this.player = new Player({
             game: this,
             platforms: this.platformPool,
@@ -61,6 +66,7 @@ export class Game {
         switch (this.state) {
             case 'start':
                 this.start(ctx);
+                this.touchRestart.detectTouch(ctx);
                 break;
             case 'playing':
                 this.background.render(ctx);
@@ -72,12 +78,15 @@ export class Game {
                     enemy.render(ctx);
                 });
                 this.player.render(ctx);
+                this.touchLeft.detectTouch(ctx);
+                this.touchRight.detectTouch(ctx);
                 this.score.draw(ctx);
                 this.scoreUpdate();
                 break;
             case 'gameOver':
                 this.saveScore();
                 this.gameOver(ctx, setPoints);
+                this.touchRestart.detectTouch(ctx);
                 break;
         }
     }
